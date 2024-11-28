@@ -1,0 +1,13 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: divertfest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:password}
+    ports:
+      - "3306:3306"
+    volumes:
+      - diverfest_data:/var/lib/mysql
+     
+volumes:
+  diverfest_data:
