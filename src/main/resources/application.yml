@@ -1,35 +1,14 @@
 server:
   servlet:
     context-path: /divertfest/api
-  
+
 spring:
   datasource:
-    initialization-mode: always
-    schema: classpath:schema.sql
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: ${DATABASE_URL:jdbc:mysql://localhost:3306/divertfest?createDatabaseIfNotExists=true}
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:password}
-    type: com.zaxxer.hikari.HikariDataSource
-    hikari:
-      poolName: SpringBootJPAHikariCP
-      minimumIdle: 20
-      maximumPoolSize: 200
-      connectionTimeout: 30000
-      idleTimeout: 30000
-      maxLifetime: 2000000
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:divertfestdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
 
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      properties:
-        hibernate:
-          default_schema: divertfest
-
-logging:
-  level:
-    academy.wakanda: ${LOG_LEVEL:DEBUG}
+springdoc:
+  swagger-ui:
+    path: /swagger
