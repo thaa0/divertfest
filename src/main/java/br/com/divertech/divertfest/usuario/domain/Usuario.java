@@ -13,7 +13,7 @@ import javax.validation.constraints.Email;
 import java.util.UUID;
 
 @Entity
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class Usuario {

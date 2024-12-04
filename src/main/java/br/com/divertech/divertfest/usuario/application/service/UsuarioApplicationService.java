@@ -1,5 +1,6 @@
 package br.com.divertech.divertfest.usuario.application.service;
 
+import br.com.divertech.divertfest.credencial.application.service.CredencialService;
 import br.com.divertech.divertfest.usuario.application.api.UsuarioCriadoResponse;
 import br.com.divertech.divertfest.usuario.application.api.UsuarioNovoRequest;
 import br.com.divertech.divertfest.usuario.application.repository.UsuarioRepository;
@@ -13,11 +14,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UsuarioApplicationService implements UsuarioService {
     private final UsuarioRepository usuarioRepository;
+    private final CredencialService credencialService;
 
     @Override
     public UsuarioCriadoResponse cadastraUsuario(UsuarioNovoRequest usuarioNovo) {
         log.info("[start] usuarioApplicationService - cadastraUsuario");
-       // credencialService.criaNovaCredencial(usuarioNovo);
+        credencialService.criaNovaCredencial(usuarioNovo);
         Usuario usuario = new Usuario(usuarioNovo);
         usuarioRepository.salva(usuario);
         log.debug("[finish] usuarioApplicationService - cadastraUsuario");
