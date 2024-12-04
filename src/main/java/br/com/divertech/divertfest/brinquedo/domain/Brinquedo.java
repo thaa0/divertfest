@@ -16,7 +16,7 @@ public class Brinquedo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "uuid", updatable = false, unique = true,nullable = false)
     private UUID idBrinquedo;
-    @NotBlank(message = "O campo Nome não deve estar em branco")
+    @NotBlank(message = "O campo nome não deve estar em branco")
     private String nome;
     @NotBlank
     private String descricao;
@@ -26,4 +26,8 @@ public class Brinquedo {
     private StatusBrinquedo status;
     @NotBlank
     private String imagem;
+
+    public Brinquedo() {
+
+    }
 }
