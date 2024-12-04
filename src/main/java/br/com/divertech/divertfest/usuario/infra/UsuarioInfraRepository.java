@@ -15,7 +15,7 @@ public class UsuarioInfraRepository implements UsuarioRepository {
     @Override
     public void salva(Usuario usuario) {
         log.info("[start] UsuarioInfraRepository - salva");
-        usuarioJPAInfraRepository.salva(usuario);
+        usuarioJPAInfraRepository.save(usuario);
         log.debug("[finish] UsuarioInfraRepository - salva");
     }
 }
