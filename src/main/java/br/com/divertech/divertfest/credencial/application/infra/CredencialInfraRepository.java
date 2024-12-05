@@ -18,4 +18,13 @@ public class CredencialInfraRepository implements CredencialRepository {
         credencialSpringDataJPARepository.save(novaCredencial);
         log.debug("[finish] CredencialInfraRepository - salva");
     }
+
+    @Override
+    public Credencial buscaCredencialPorUsuario(String usuario) {
+        log.info("[start] CredencialInfraRepository - buscaCredencialPorUsuario");
+        Credencial credencial = credencialSpringDataJPARepository.findByUsuario(usuario)
+                .orElseThrow(()-> new RuntimeException("Não encontrado!"));
+        log.debug("[finish] CredencialInfraRepository - buscaCredencialPorUsuario");
+        return credencial;
+    }
 }
