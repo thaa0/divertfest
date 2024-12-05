@@ -54,6 +54,8 @@ public class SecurityConfiguration {
         return authenticationManagerBuilder.build();
     }
 
+
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -63,6 +65,6 @@ public class SecurityConfiguration {
     public WebSecurityCustomizer webSecurityCustomizer() {
         //alterar isso aqui quando fro para prod
         return (web) -> web.ignoring()
-                .antMatchers("/**.html", "/v3/api-docs/**", "/webjars/**", "/configuration/**", "/swagger-ui/**", "/swagger-ui.html");
+                .antMatchers("/**.html", "/v3/api-docs/**", "/webjars/**", "/configuration/**", "**/swagger", "/swagger-ui.html");
     }
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UsuarioController implements UsuarioAPI {
 
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
     @Override
     public UsuarioCriadoResponse cadastraNovoUsuario(UsuarioNovoRequest usuarioNovo) {
