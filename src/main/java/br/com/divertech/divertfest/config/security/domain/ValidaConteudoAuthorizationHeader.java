@@ -6,6 +6,6 @@ public class ValidaConteudoAuthorizationHeader implements Predicate<String> {
 
     @Override
     public boolean test(String ConteudoAuthorizationHeader) {
-        return  !ConteudoAuthorizationHeader.isEmpty() && ConteudoAuthorizationHeader.startsWith("Bearer");
+        return ConteudoAuthorizationHeader.startsWith("Bearer");
     }
 }

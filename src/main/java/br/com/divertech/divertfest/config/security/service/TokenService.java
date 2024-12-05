@@ -5,7 +5,6 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
-import lombok.Value;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -13,13 +12,14 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Value;
 
 @Service
 @Log4j2
 public class TokenService {
-   // @Value("${divertfest.jwt.expiracao}")
+    @Value("${divertfest.jwt.expiracao}")
     private String expiracao;
-   // @Value("${divertfest.jwt.chave}")
+    @Value("${divertfest.jwt.chave}")
     private String chave;
 
     public String gerarToken(Authentication authentication) {

@@ -31,6 +31,8 @@ public class SecurityConfiguration {
         http
                 .authorizeRequests()
                 .antMatchers("/public/**").permitAll()
+                .antMatchers("/locador").hasRole("LOCADOR")
+                .antMatchers("/locatario").hasRole("LOCATARIO")
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
@@ -59,6 +61,7 @@ public class SecurityConfiguration {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
+        //alterar isso aqui quando fro para prod
         return (web) -> web.ignoring()
                 .antMatchers("/**.html", "/v3/api-docs/**", "/webjars/**", "/configuration/**", "/swagger-ui/**", "/swagger-ui.html");
     }
