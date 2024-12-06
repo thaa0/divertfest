@@ -6,6 +6,7 @@ import br.com.divertech.divertfest.usuario.application.api.UsuarioNovoRequest;
 import javax.validation.Valid;
 
 public interface CredencialService{
-    void criaNovaCredencial(@Valid UsuarioNovoRequest usuarioNovo);
     Credencial buscaCredencialPorUsuario(String usuario);
+    void criaNovaCredencialLocador(UsuarioNovoRequest usuarioNovo);
+    void criaNovaCredencialLocatario(UsuarioNovoRequest usuarioNovo);
 }

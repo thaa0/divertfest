@@ -16,10 +16,18 @@ public class UsuarioController implements UsuarioAPI {
     private final UsuarioService usuarioService;
 
     @Override
-    public UsuarioCriadoResponse cadastraNovoUsuario(UsuarioNovoRequest usuarioNovo) {
-        log.info("[start] UsuarioController - cadastraNovoUsuario");
-        UsuarioCriadoResponse usuarioCadastrado = usuarioService.cadastraUsuario(usuarioNovo);
-        log.debug("[finish] UsuarioController - cadastraNovoUsuario");
+    public UsuarioCriadoResponse cadastraNovoLocatario(UsuarioNovoRequest usuarioNovo) {
+        log.info("[start] UsuarioController - cadastraNovoLocatario");
+        UsuarioCriadoResponse usuarioCadastrado = usuarioService.cadastraLocatario(usuarioNovo);
+        log.debug("[finish] UsuarioController - cadastraNovoLocatario");
+        return usuarioCadastrado;
+    }
+
+    @Override
+    public UsuarioCriadoResponse cadastraNovoLocador(UsuarioNovoRequest usuarioNovo) {
+        log.info("[start] UsuarioController - cadastraNovoLocador");
+        UsuarioCriadoResponse usuarioCadastrado = usuarioService.cadastraLocador(usuarioNovo);
+        log.debug("[finish] UsuarioController - cadastraNovoLocador");
         return usuarioCadastrado;
     }
 }

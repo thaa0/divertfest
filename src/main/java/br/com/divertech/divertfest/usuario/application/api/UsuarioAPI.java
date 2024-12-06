@@ -8,7 +8,11 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = "/public/v1/usuario")
 public interface UsuarioAPI {
-    @PostMapping
+    @PostMapping("/locatario")
     @ResponseStatus(code = HttpStatus.CREATED)
-    UsuarioCriadoResponse cadastraNovoUsuario(@RequestBody @Valid UsuarioNovoRequest usuarioNovo);
+    UsuarioCriadoResponse cadastraNovoLocatario(@RequestBody @Valid UsuarioNovoRequest usuarioNovo);
+
+    @PostMapping("/locador")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    UsuarioCriadoResponse cadastraNovoLocador(@RequestBody @Valid UsuarioNovoRequest usuarioNovo);
 }

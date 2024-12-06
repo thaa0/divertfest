@@ -16,13 +16,24 @@ public class UsuarioApplicationService implements UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final CredencialService credencialService;
 
+
     @Override
-    public UsuarioCriadoResponse cadastraUsuario(UsuarioNovoRequest usuarioNovo) {
-        log.info("[start] usuarioApplicationService - cadastraUsuario");
-        credencialService.criaNovaCredencial(usuarioNovo);
+    public UsuarioCriadoResponse cadastraLocador(UsuarioNovoRequest usuarioNovo) {
+        log.info("[start] UsuarioApplicationService - cadastraLocador");
+        credencialService.criaNovaCredencialLocador(usuarioNovo);
         Usuario usuario = new Usuario(usuarioNovo);
         usuarioRepository.salva(usuario);
-        log.debug("[finish] usuarioApplicationService - cadastraUsuario");
+        log.debug("[finish] UsuarioApplicationService - cadastraLocador");
+        return new UsuarioCriadoResponse(usuario);
+    }
+
+    @Override
+    public UsuarioCriadoResponse cadastraLocatario(UsuarioNovoRequest usuarioNovo) {
+        log.info("[start] UsuarioApplicationService - cadastraLocatario");
+        credencialService.criaNovaCredencialLocatario(usuarioNovo);
+        Usuario usuario = new Usuario(usuarioNovo);
+        usuarioRepository.salva(usuario);
+        log.debug("[finish] UsuarioApplicationService - cadastraLocatario");
         return new UsuarioCriadoResponse(usuario);
     }
 }
