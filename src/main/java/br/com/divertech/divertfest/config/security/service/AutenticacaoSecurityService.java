@@ -1,8 +1,10 @@
 package br.com.divertech.divertfest.config.security.service;
 
 import br.com.divertech.divertfest.credencial.application.repository.CredencialRepository;
+import br.com.divertech.divertfest.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,6 +23,6 @@ public class AutenticacaoSecurityService implements UserDetailsService {
         log.info("[inicio] AutenticacaoSecurityService - buscando credencial pelo usuario");
         var credencial = credencialRepository.buscaCredencialPorUsuario(usuario);
         log.info("[finaliza] AutenticacaoSecurityService - buscando credencial pelo usuario");
-        return Optional.ofNullable(credencial).orElseThrow(() -> new RuntimeException("Não existe credencial para o Usuario informado!"));
+        return Optional.ofNullable(credencial).orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Usuario não possue credencial!"));
     }
 }
