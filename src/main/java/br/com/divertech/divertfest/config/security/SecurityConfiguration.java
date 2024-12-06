@@ -65,6 +65,6 @@ public class SecurityConfiguration {
     public WebSecurityCustomizer webSecurityCustomizer() {
         //alterar isso aqui quando fro para prod
         return (web) -> web.ignoring()
-                .antMatchers("/**.html", "/v3/api-docs/**", "/webjars/**", "/configuration/**", "**/swagger", "/swagger-ui.html");
+                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/swagger-resources/**", "/configuration/**", "/public/**");
     }
 }

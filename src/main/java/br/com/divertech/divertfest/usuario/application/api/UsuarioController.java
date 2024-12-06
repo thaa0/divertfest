@@ -34,7 +34,8 @@ public class UsuarioController implements UsuarioAPI {
     @Override
     public UsuarioDetalhadoResponde getUsuario(String email) {
         log.info("[start] UsuarioController - getUsuario");
+        UsuarioDetalhadoResponde usuario = usuarioService.buscaUsuarioPorEmail(email);
         log.debug("[finish] UsuarioController - getUsuario");
-        return null;
+        return usuario;
     }
 }

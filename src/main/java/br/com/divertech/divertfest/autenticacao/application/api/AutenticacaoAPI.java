@@ -8,7 +8,7 @@ import javax.validation.Valid;
 
 @RequestMapping("/public/v1/autenticacao")
 public interface AutenticacaoAPI {
-    @PostMapping
+    @PostMapping("/autentica")
     @ResponseStatus(HttpStatus.OK)
     TokenResponse autentica(@RequestBody @Valid AutenticacaoRequest autenticacaoRequest) throws AuthenticationException;
 }

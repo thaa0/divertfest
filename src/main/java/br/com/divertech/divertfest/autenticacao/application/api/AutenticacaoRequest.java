@@ -1,4 +1,5 @@
 package br.com.divertech.divertfest.autenticacao.application.api;
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ import lombok.Data;
 public class AutenticacaoRequest {
     @NotNull
     @NotBlank(message = "O usuário não pode estar em branco!")
+    @Column(unique = true)
     @Email
     private String usuario;
     @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres")
