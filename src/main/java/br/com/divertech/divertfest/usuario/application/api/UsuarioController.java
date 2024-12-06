@@ -30,4 +30,11 @@ public class UsuarioController implements UsuarioAPI {
         log.debug("[finish] UsuarioController - cadastraNovoLocador");
         return usuarioCadastrado;
     }
+
+    @Override
+    public UsuarioDetalhadoResponde getUsuario(String email) {
+        log.info("[start] UsuarioController - getUsuario");
+        log.debug("[finish] UsuarioController - getUsuario");
+        return null;
+    }
 }
