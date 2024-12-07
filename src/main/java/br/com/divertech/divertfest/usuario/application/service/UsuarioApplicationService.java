@@ -61,6 +61,7 @@ public class UsuarioApplicationService implements UsuarioService {
         log.info("[start] UsuarioApplicationService - suspendeUsuario");
         Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
         usuario.alteraStatusSuspenso();
+        usuarioRepository.salva(usuario);
         log.debug("[finish] UsuarioApplicationService - suspendeUsuario");
     }
 }
