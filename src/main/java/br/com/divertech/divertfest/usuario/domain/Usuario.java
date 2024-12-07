@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Entity
@@ -48,7 +47,10 @@ public class Usuario {
     }
 
 
-    public void alteraStatusCancelado() {
+    public void alteraStatusSuspenso() {
         this.status = StatusUsuario.SUSPENSO;
+    }
+    public void AlteraStatusAtivo() {
+        this.status = StatusUsuario.ATIVO;
     }
 }
