@@ -24,4 +24,8 @@ public interface UsuarioAPI {
     @GetMapping("/admin/id/{idUsuario}")
     @ResponseStatus(code = HttpStatus.OK)
     UsuarioDetalhadoResponde getUsuarioById(@PathVariable UUID idUsuario);
+
+    @PatchMapping("/usuario/{idUsuario}/suspende")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void suspendeUsuario(@PathVariable UUID idUsuario);
 }

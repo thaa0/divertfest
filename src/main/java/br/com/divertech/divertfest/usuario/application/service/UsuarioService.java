@@ -11,4 +11,5 @@ public interface UsuarioService {
     UsuarioCriadoResponse cadastraLocatario(UsuarioNovoRequest usuarioNovo);
     UsuarioDetalhadoResponde buscaUsuarioPorEmail(String email);
     UsuarioDetalhadoResponde buscaUsuarioPorId(UUID idUsuario);
+    void suspendeUsuario(UUID idUsuario);
 }

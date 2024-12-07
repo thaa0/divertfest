@@ -49,6 +49,6 @@ public class Usuario {
 
 
     public void alteraStatusCancelado() {
-        this.status = StatusUsuario.CANCELADO;
+        this.status = StatusUsuario.SUSPENSO;
     }
 }
