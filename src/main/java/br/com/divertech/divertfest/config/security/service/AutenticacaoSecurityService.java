@@ -23,6 +23,6 @@ public class AutenticacaoSecurityService implements UserDetailsService {
         log.info("[inicio] AutenticacaoSecurityService - buscando credencial pelo usuario");
         var credencial = credencialRepository.buscaCredencialPorUsuario(usuario);
         log.info("[finaliza] AutenticacaoSecurityService - buscando credencial pelo usuario");
-        return Optional.ofNullable(credencial).orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Usuario não possue credencial!"));
+        return Optional.ofNullable(credencial).orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Usuario não possue credencial!"));
     }
 }

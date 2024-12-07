@@ -2,8 +2,10 @@ package br.com.divertech.divertfest.credencial.application.infra;
 
 import br.com.divertech.divertfest.credencial.application.repository.CredencialRepository;
 import br.com.divertech.divertfest.credencial.domain.Credencial;
+import br.com.divertech.divertfest.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -23,7 +25,7 @@ public class CredencialInfraRepository implements CredencialRepository {
     public Credencial buscaCredencialPorUsuario(String usuario) {
         log.info("[start] CredencialInfraRepository - buscaCredencialPorUsuario");
         Credencial credencial = credencialSpringDataJPARepository.findByUsuario(usuario)
-                .orElseThrow(()-> new RuntimeException("Não encontrado!"));
+                .orElseThrow(()-> APIException.build(HttpStatus.UNAUTHORIZED,"Não encontrado!"));
         log.debug("[finish] CredencialInfraRepository - buscaCredencialPorUsuario");
         return credencial;
     }

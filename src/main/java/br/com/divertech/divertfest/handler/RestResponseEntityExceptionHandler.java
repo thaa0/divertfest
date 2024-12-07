@@ -3,6 +3,7 @@ package br.com.divertech.divertfest.handler;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,6 +28,14 @@ public class RestResponseEntityExceptionHandler {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(ErrorApiResponse.builder().description("INTERNAL SERVER ERROR!")
 						.message("POR FAVOR INFORME AO ADMINISTRADOR DO SISTEMA!").build());
+	}
+
+	@ExceptionHandler(InternalAuthenticationServiceException.class)
+	public ResponseEntity<ErrorApiResponse> handlerBadCredentialsException(Exception ex) {
+		log.error("Exception: ", ex);
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+				.body(ErrorApiResponse.builder().description("CREDENCIAL ERROR!")
+						.message("USUARIO OU SENHA ESTÃO INVÁLIDOS").build());
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
