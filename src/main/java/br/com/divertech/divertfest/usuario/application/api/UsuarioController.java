@@ -48,4 +48,20 @@ public class UsuarioController implements UsuarioAPI {
         log.debug("[finish] UsuarioController - getUsuarioById");
         return usuario;
     }
+
+    @Override
+    public void suspendeUsuario(UUID idUsuario) {
+        log.info("[start] UsuarioController - suspendeUsuario");
+        usuarioService.suspendeUsuario(idUsuario);
+        log.debug("[finish] UsuarioController - suspendeUsuario");
+    }
+
+    @Override
+    public void ativaUsuario(UUID idUsuario) {
+        log.info("[start] UsuarioController - ativaUsuario");
+        usuarioService.ativaUsuario(idUsuario);
+        log.debug("[finish] UsuarioController - ativaUsuario");
+    }
+
+
 }
