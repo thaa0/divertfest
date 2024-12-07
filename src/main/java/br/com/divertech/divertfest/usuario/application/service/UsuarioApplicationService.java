@@ -11,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Log4j2
 @Service
@@ -45,6 +46,14 @@ public class UsuarioApplicationService implements UsuarioService {
         log.info("[start] UsuarioApplicationService - buscaUsuarioPorEmail");
         Usuario usuario = usuarioRepository.buscaUsuario(email);
         log.debug("[finish] UsuarioApplicationService - buscaUsuarioPorEmail");
+        return new UsuarioDetalhadoResponde(usuario);
+    }
+
+    @Override
+    public UsuarioDetalhadoResponde buscaUsuarioPorId(UUID idUsuario) {
+        log.info("[start] UsuarioApplicationService - buscaUsuarioPorId");
+        Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
+        log.debug("[finish] UsuarioApplicationService - buscaUsuarioPorId");
         return new UsuarioDetalhadoResponde(usuario);
     }
 }

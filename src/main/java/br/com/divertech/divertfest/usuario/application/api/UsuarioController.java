@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @Log4j2
 @RestController
 @Validated
@@ -36,6 +38,14 @@ public class UsuarioController implements UsuarioAPI {
         log.info("[start] UsuarioController - getUsuario");
         UsuarioDetalhadoResponde usuario = usuarioService.buscaUsuarioPorEmail(email);
         log.debug("[finish] UsuarioController - getUsuario");
+        return usuario;
+    }
+
+    @Override
+    public UsuarioDetalhadoResponde getUsuarioById(UUID idUsuario) {
+        log.info("[start] UsuarioController - getUsuarioById");
+        UsuarioDetalhadoResponde usuario = usuarioService.buscaUsuarioPorId(idUsuario);
+        log.debug("[finish] UsuarioController - getUsuarioById");
         return usuario;
     }
 }
