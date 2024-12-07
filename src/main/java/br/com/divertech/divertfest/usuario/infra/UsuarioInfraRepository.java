@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Log4j2
 @Repository
@@ -29,6 +30,15 @@ public class UsuarioInfraRepository implements UsuarioRepository {
         Usuario usuario = usuarioJPAInfraRepository.findByEmail(email)
                 .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND,"Usuario não existe"));
         log.debug("[finish] UsuarioInfraRepository - buscaUsuario");
+        return usuario;
+    }
+
+    @Override
+    public Usuario buscaUsuarioPorId(UUID idUsuario) {
+        log.info("[start] UsuarioInfraRepository - buscaUsuarioPorId");
+        Usuario usuario = usuarioJPAInfraRepository.findById(idUsuario)
+                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND,"Usuario não existe"));
+        log.debug("[finish] UsuarioInfraRepository - buscaUsuarioPorId");
         return usuario;
     }
 }
