@@ -28,4 +28,9 @@ public interface UsuarioAPI {
     @PatchMapping("/usuario/{idUsuario}/suspende")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void suspendeUsuario(@PathVariable UUID idUsuario);
+
+    @PatchMapping("/usuario/{idUsuario}/ativa")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void ativaUsuario(@PathVariable UUID idUsuario);
+
 }

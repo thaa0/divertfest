@@ -60,8 +60,19 @@ public class UsuarioApplicationService implements UsuarioService {
     public void suspendeUsuario(UUID idUsuario) {
         log.info("[start] UsuarioApplicationService - suspendeUsuario");
         Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
+        usuario.validaUsuarioJaSuspenso();
         usuario.alteraStatusSuspenso();
         usuarioRepository.salva(usuario);
         log.debug("[finish] UsuarioApplicationService - suspendeUsuario");
+    }
+
+    @Override
+    public void ativaUsuario(UUID idUsuario) {
+        log.info("[start] UsuarioApplicationService - ativaUsuario");
+        Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
+        usuario.validaUsuarioJaAtivo();
+        usuario.alteraStatusAtivo();
+        usuarioRepository.salva(usuario);
+        log.debug("[finish] UsuarioApplicationService - ativaUsuario");
     }
 }

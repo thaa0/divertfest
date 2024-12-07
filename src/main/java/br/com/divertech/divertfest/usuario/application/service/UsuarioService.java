@@ -12,4 +12,5 @@ public interface UsuarioService {
     UsuarioDetalhadoResponde buscaUsuarioPorEmail(String email);
     UsuarioDetalhadoResponde buscaUsuarioPorId(UUID idUsuario);
     void suspendeUsuario(UUID idUsuario);
+    void ativaUsuario(UUID idUsuario);
 }
