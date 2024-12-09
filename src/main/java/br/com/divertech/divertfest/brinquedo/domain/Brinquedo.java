@@ -1,5 +1,6 @@
-package br.com.divertech.divertfest.locador.domain;
+package br.com.divertech.divertfest.brinquedo.domain;
 
+import br.com.divertech.divertfest.locador.domain.Locador;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,5 +31,4 @@ public class Brinquedo {
     private String imagem;
     @ManyToOne
     private Locador donoBrinquedo;
-
 }

@@ -1,5 +1,6 @@
 package br.com.divertech.divertfest.locador.domain;
 
+import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
 import br.com.divertech.divertfest.credencial.domain.Role;
 import br.com.divertech.divertfest.locador.application.api.LocadorNovoRequest;
 import br.com.divertech.divertfest.usuario.common.StatusUsuario;
