@@ -1,11 +1,17 @@
-package br.com.divertech.divertfest.brinquedo.domain;
+package br.com.divertech.divertfest.locador.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 public class Brinquedo {
     @Id
@@ -22,8 +28,7 @@ public class Brinquedo {
     private StatusBrinquedo status;
     @NotBlank
     private String imagem;
+    @ManyToOne
+    private Locador donoBrinquedo;
 
-    public Brinquedo() {
-
-    }
 }
