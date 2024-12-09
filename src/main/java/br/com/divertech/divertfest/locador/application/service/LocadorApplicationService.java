@@ -21,7 +21,7 @@ public class LocadorApplicationService implements LocadorService {
     @Override
     public LocadorCriadoResponse cadastraLocador(LocadorNovoRequest locadorNovo) {
         log.info("[start] UsuarioApplicationService - cadastraLocador");
-        credencialService.criaNovaCredencialLocador(usuarioNovo);
+        credencialService.criaNovaCredencialLocador(locadorNovo);
         Locador locador = new Locador(locadorNovo);
         locadorRepostory.salva(locador);
         log.debug("[finish] UsuarioApplicationService - cadastraLocador");

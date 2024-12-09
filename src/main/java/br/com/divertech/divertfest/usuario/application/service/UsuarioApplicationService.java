@@ -23,7 +23,7 @@ public class UsuarioApplicationService implements UsuarioService {
     @Override
     public UsuarioCriadoResponse cadastraLocador(UsuarioNovoRequest usuarioNovo) {
         log.info("[start] UsuarioApplicationService - cadastraLocador");
-        credencialService.criaNovaCredencialLocador(usuarioNovo);
+      //  credencialService.criaNovaCredencialLocador(usuarioNovo);
         Usuario usuario = new Usuario(usuarioNovo);
         usuarioRepository.salva(usuario);
         log.debug("[finish] UsuarioApplicationService - cadastraLocador");
