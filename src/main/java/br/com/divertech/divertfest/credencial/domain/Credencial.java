@@ -24,6 +24,7 @@ public class Credencial implements UserDetails {
     private UUID idCredencial;
     @Getter
     @NotBlank
+    @Column(unique = true)
     private String usuario;
     @NotNull
     @Size(max = 60)
