@@ -1,13 +1,11 @@
 package br.com.divertech.divertfest.locatario.application.api;
 
 import lombok.Getter;
-import lombok.Value;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.UUID;
 
 @Getter
 public class LocatarioNovoRequest {

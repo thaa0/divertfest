@@ -1,5 +1,6 @@
 package br.com.divertech.divertfest.locatario.domain;
 
+import br.com.divertech.divertfest.credencial.domain.Role;
 import br.com.divertech.divertfest.locatario.application.api.LocatarioNovoRequest;
 import br.com.divertech.divertfest.usuario.domain.StatusUsuario;
 import lombok.AccessLevel;
@@ -35,6 +36,7 @@ public class Locatario {
     @Column(unique = true)
     private String email;
     private StatusUsuario status;
+    private Role tipoUsuario;
 
     public Locatario(LocatarioNovoRequest locatarioNovo) {
         this.nome = locatarioNovo.getNome();
@@ -44,5 +46,6 @@ public class Locatario {
         this.endereco = locatarioNovo.getEndereco();
         this.email = locatarioNovo.getEmail();
         this.status = StatusUsuario.ATIVO;
+        this.tipoUsuario = Role.LOCATARIO;
     }
 }
