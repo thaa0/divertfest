@@ -1,4 +1,4 @@
-package br.com.divertech.divertfest.locador.application.infra;
+package br.com.divertech.divertfest.locador.infra;
 
 import br.com.divertech.divertfest.locador.application.repository.LocadorRepository;
 import br.com.divertech.divertfest.locador.domain.Locador;
