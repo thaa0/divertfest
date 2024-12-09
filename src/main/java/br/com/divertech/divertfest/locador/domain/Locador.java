@@ -2,7 +2,7 @@ package br.com.divertech.divertfest.locador.domain;
 
 import br.com.divertech.divertfest.credencial.domain.Role;
 import br.com.divertech.divertfest.locador.application.api.LocadorNovoRequest;
-import br.com.divertech.divertfest.usuario.domain.StatusUsuario;
+import br.com.divertech.divertfest.usuario.common.StatusUsuario;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

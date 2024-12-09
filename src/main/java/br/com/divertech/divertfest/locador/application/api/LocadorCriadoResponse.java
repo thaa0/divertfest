@@ -1,7 +1,7 @@
 package br.com.divertech.divertfest.locador.application.api;
 
 import br.com.divertech.divertfest.locador.domain.Locador;
-import br.com.divertech.divertfest.usuario.domain.StatusUsuario;
+import br.com.divertech.divertfest.usuario.common.StatusUsuario;
 import lombok.Getter;
 
 import java.util.UUID;
