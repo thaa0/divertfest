@@ -24,7 +24,7 @@ public class Brinquedo {
     @NotBlank
     private String descricao;
     @NotBlank
-    private String categoria;
+    private Categoria categoria;
     @Enumerated(EnumType.STRING)
     private StatusBrinquedo status;
     @NotBlank
