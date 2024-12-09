@@ -9,14 +9,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/public/v1")
 public interface UsuarioAPI {
-    @PostMapping("/locatario")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    UsuarioCriadoResponse cadastraNovoLocatario(@RequestBody @Valid UsuarioNovoRequest usuarioNovo);
-
-    @PostMapping("/locador")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    UsuarioCriadoResponse cadastraNovoLocador(@RequestBody @Valid UsuarioNovoRequest usuarioNovo);
-
     @GetMapping("/admin/email/{email}")
     @ResponseStatus(code = HttpStatus.OK)
     UsuarioDetalhadoResponde getUsuario(@PathVariable String email);

@@ -1,4 +1,4 @@
-package br.com.divertech.divertfest.locador.application.api;
+package br.com.divertech.divertfest.locatario.application.api;
 
 import br.com.divertech.divertfest.usuario.application.api.UsuarioCriadoResponse;
 import br.com.divertech.divertfest.usuario.application.api.UsuarioNovoRequest;
@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "v1/")
-public interface LocadorAPI {
-
-    @PostMapping("public/locador")
+@RequestMapping("v1/")
+public interface LocatarioAPI {
+    @PostMapping("public/locatario")
     @ResponseStatus(code = HttpStatus.CREATED)
-    LocadorCriadoResponse cadastraNovoLocador(@RequestBody @Valid LocadorNovoRequest locadorNovo);
+    LocatarioCriadoResponse cadastraNovoLocatario(@RequestBody @Valid LocatarioNovoRequest locatarioNovo);
 
 }

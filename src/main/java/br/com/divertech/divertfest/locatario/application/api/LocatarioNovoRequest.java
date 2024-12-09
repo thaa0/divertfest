@@ -1,16 +1,16 @@
-package br.com.divertech.divertfest.locador.application.api;
+package br.com.divertech.divertfest.locatario.application.api;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Value;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.UUID;
 
 @Getter
-@AllArgsConstructor
-public class LocadorNovoRequest {
+public class LocatarioNovoRequest {
     @Email
     private String email;
     @Size(min = 6)
