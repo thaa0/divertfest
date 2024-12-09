@@ -14,12 +14,11 @@ public interface LocadorAPI {
     @ResponseStatus(code = HttpStatus.CREATED)
     LocadorCriadoResponse cadastraNovoLocador(@RequestBody @Valid LocadorNovoRequest locadorNovo);
 
-    @GetMapping("/admin/email/{email}")
+    @GetMapping("/admin/locador/email/{email}")
     @ResponseStatus(code = HttpStatus.OK)
     LocadorDetalhadoResponse getLocador(@PathVariable String email);
 
-    @GetMapping("/admin/id/{idLocador}")
+    @GetMapping("/admin/locador/id/{idLocador}")
     @ResponseStatus(code = HttpStatus.OK)
     LocadorDetalhadoResponse getLocadorById(@PathVariable UUID idLocador);
-
 }

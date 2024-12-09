@@ -16,9 +16,9 @@ public class LocadorController implements LocadorAPI {
 
     @Override
     public LocadorCriadoResponse cadastraNovoLocador(LocadorNovoRequest locadorNovo) {
-        log.info("[start] UsuarioController - cadastraNovoLocador");
+        log.info("[start] LocadorController - cadastraNovoLocador");
         LocadorCriadoResponse locadorCadastrado = locadorService.cadastraLocador(locadorNovo);
-        log.debug("[finish] UsuarioController - cadastraNovoLocador");
+        log.debug("[finish] LocadorController - cadastraNovoLocador");
         return locadorCadastrado;
     }
 

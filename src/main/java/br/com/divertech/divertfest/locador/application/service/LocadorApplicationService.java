@@ -44,6 +44,4 @@ public class LocadorApplicationService implements LocadorService {
         log.debug("[finish] LocadorApplicationService - buscaLocadorPorId");
         return new LocadorDetalhadoResponse(locador);
     }
-
-
 }

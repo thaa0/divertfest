@@ -17,7 +17,6 @@ public class LocadorDetalhadoResponse {
     private Role tipoUsuario;
     private StatusUsuario status;
 
-
     public LocadorDetalhadoResponse(Locador locador) {
         this.idUsuario = locador.getIdUsuario();
         this.razaoSocial = locador.getRazaoSocial();
