@@ -1,5 +1,6 @@
 package br.com.divertech.divertfest.brinquedo.domain;
 
+import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoRequest;
 import br.com.divertech.divertfest.locador.domain.Locador;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Getter
@@ -23,7 +25,8 @@ public class Brinquedo {
     private String nome;
     @NotBlank
     private String descricao;
-    @NotBlank
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
     @Enumerated(EnumType.STRING)
     private StatusBrinquedo status;
@@ -31,4 +34,14 @@ public class Brinquedo {
     private String imagem;
     @ManyToOne
     private Locador donoBrinquedo;
+
+
+    public Brinquedo(BrinquedoRequest brinquedoRequest, Locador locador) {
+        this.nome = brinquedoRequest.getNome();
+        this.descricao = brinquedoRequest.getDescricao();
+        this.categoria = brinquedoRequest.getCategoria();
+        this.status = StatusBrinquedo.DISPONIVEL;
+        this.imagem = brinquedoRequest.getImagem();
+        this.donoBrinquedo = locador;
+    }
 }
