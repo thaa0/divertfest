@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RequestMapping("/public/v1/autenticacao")
+@RequestMapping("v1/")
 public interface AutenticacaoAPI {
 
     @Operation(summary = "Autenticação do usuário",
@@ -17,7 +17,7 @@ public interface AutenticacaoAPI {
                     @ApiResponse(responseCode = "200", description = "Autenticação bem-sucedida"),
                     @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos")
             })
-    @PostMapping("/autentica")
+    @PostMapping("public/autentica")
     @ResponseStatus(HttpStatus.OK)
     TokenResponse autentica(@RequestBody @Valid AutenticacaoRequest autenticacaoRequest) throws AuthenticationException;
 }
