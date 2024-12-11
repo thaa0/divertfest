@@ -31,7 +31,7 @@ public class SecurityConfiguration {
         http
                 .authorizeRequests()
                 .antMatchers("/v1/public/**").permitAll()
-                .antMatchers("/locador").hasRole("LOCADOR")
+                .antMatchers("/v1/locador/**").hasRole("LOCADOR")
                 .antMatchers("/locatario").hasRole("LOCATARIO")
                 .anyRequest().authenticated()
                 .and()
