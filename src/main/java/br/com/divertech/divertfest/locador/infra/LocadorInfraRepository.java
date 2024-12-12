@@ -27,7 +27,7 @@ public class LocadorInfraRepository implements LocadorRepository {
     public Locador buscaLocador(String email) {
         log.info("[start] LocadorInfraRepository - buscaLocador");
         Locador locador = locadorSpringDataJPARepository.findByEmail(email)
-                .orElseThrow(()-> APIException.build(HttpStatus.NOT_FOUND, "Usuário não encontrado!"));
+                .orElseThrow(()-> APIException.build(HttpStatus.NOT_FOUND, "Locador não encontrado!"));
         log.debug("[finish] LocadorInfraRepository - buscaLocador");
         return locador;
     }
@@ -36,7 +36,7 @@ public class LocadorInfraRepository implements LocadorRepository {
     public Locador buscaLocadorPorId(UUID idLocador) {
         log.info("[start] LocadorInfraRepository - buscaLocadorPorId");
         Locador locador = locadorSpringDataJPARepository.findById(idLocador)
-                .orElseThrow(()-> APIException.build(HttpStatus.NOT_FOUND, "Usuário não encontrado!"));
+                .orElseThrow(()-> APIException.build(HttpStatus.NOT_FOUND, "Locador não encontrado!"));
         log.debug("[finish] LocadorInfraRepository - buscaLocadorPorId");
         return locador;
     }

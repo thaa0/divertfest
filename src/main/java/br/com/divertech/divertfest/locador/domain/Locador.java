@@ -1,5 +1,6 @@
 package br.com.divertech.divertfest.locador.domain;
 
+import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
 import br.com.divertech.divertfest.credencial.domain.Role;
 import br.com.divertech.divertfest.handler.APIException;
 import br.com.divertech.divertfest.locador.application.api.LocadorNovoRequest;
@@ -38,7 +39,7 @@ public class Locador {
     @Email
     @Column(unique = true)
     private String email;
-    @OneToMany
+    @OneToMany(mappedBy = "donoBrinquedo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Brinquedo> brinquedos;
     private Role tipoUsuario;
     private StatusUsuario status;
