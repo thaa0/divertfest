@@ -28,4 +28,21 @@ public class BrinquedoApplicationService implements BrinquedoService {
         log.debug("[finish] BrinquedoApplicationService - cadastra");
         return new BrinquedoResponse(brinquedo);
     }
+
+    @Override
+    public void edita(String idBrinquedo, BrinquedoRequest brinquedoRequest) {
+        log.info("[start] BrinquedoApplicationService - edita");
+        Brinquedo brinquedo = brinquedoRepository.buscaBrinquedoPorId(idBrinquedo);
+        brinquedo.edita(brinquedoRequest);
+        brinquedoRepository.salva(brinquedo);
+        log.debug("[finish] BrinquedoApplicationService - edita");
+    }
+
+    @Override
+    public BrinquedoResponse buscaBrinquedoPorId(String idBrinquedo) {
+        log.info("[start] BrinquedoApplicationService - buscaBrinquedoPorId");
+        Brinquedo brinquedo = brinquedoRepository.buscaBrinquedoPorId(idBrinquedo);
+        log.debug("[finish] BrinquedoApplicationService - buscaBrinquedoPorId");
+        return new BrinquedoResponse(brinquedo);
+    }
 }

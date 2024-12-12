@@ -10,10 +10,14 @@ public class BrinquedoResponse {
     private UUID idBrinquedo;
     private UUID idDono;
     private String dono;
+    private String nome;
+    private String status;
 
     public BrinquedoResponse(Brinquedo brinquedo) {
         this.idBrinquedo = brinquedo.getIdBrinquedo();
         this.idDono = brinquedo.getDonoBrinquedo().getIdUsuario();
         this.dono = brinquedo.getDonoBrinquedo().getNome();
+        this.nome = brinquedo.getNome();
+        this.status = brinquedo.getStatus().name();
     }
 }

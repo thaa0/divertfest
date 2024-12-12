@@ -44,4 +44,11 @@ public class Brinquedo {
         this.imagem = brinquedoRequest.getImagem();
         this.donoBrinquedo = locador;
     }
+
+    public void edita(BrinquedoRequest brinquedoRequest) {
+        this.nome = brinquedoRequest.getNome();
+        this.descricao = brinquedoRequest.getDescricao();
+        this.categoria = brinquedoRequest.getCategoria();
+        this.imagem = brinquedoRequest.getImagem();
+    }
 }

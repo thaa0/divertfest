@@ -18,4 +18,19 @@ public class BrinquedoController implements BrinquedoAPI {
         log.debug("[finish] BrinquedoController - cadastraBrinquedo");
         return brinquedoCadastrado;
     }
+
+    @Override
+    public BrinquedoResponse buscaBrinquedoPorId(String idBrinquedo) {
+        log.info("[start] BrinquedoController - buscaBrinquedoPorId");
+        BrinquedoResponse brinquedo = brinquedoService.buscaBrinquedoPorId(idBrinquedo);
+        log.debug("[finish] BrinquedoController - buscaBrinquedoPorId");
+        return brinquedo;
+    }
+
+    @Override
+    public void editaBrinquedo(String idBrinquedo, BrinquedoRequest brinquedoRequest) {
+        log.info("[start] BrinquedoController - editaBrinquedo");
+        brinquedoService.edita(idBrinquedo, brinquedoRequest);
+        log.debug("[finish] BrinquedoController - editaBrinquedo");
+    }
 }

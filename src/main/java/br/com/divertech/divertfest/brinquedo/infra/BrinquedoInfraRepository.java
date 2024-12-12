@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
 @RequiredArgsConstructor
 @Log4j2
@@ -17,5 +19,13 @@ public class BrinquedoInfraRepository implements BrinquedoRepository {
         log.info("[start] BrinquedoInfraRepository - salva");
         brinquedoSpringDataJPARepository.save(brinquedo);
         log.debug("[finish] BrinquedoInfraRepository - salva");
+    }
+
+    @Override
+    public Brinquedo buscaBrinquedoPorId(String idBrinquedo) {
+        log.info("[start] BrinquedoInfraRepository - buscaBrinquedoPorId");
+        Brinquedo brinquedo = brinquedoSpringDataJPARepository.findById(UUID.fromString(idBrinquedo)).orElseThrow(() -> new RuntimeException("Brinquedo não encontrado"));
+        log.debug("[finish] BrinquedoInfraRepository - buscaBrinquedoPorId");
+        return brinquedo;
     }
 }

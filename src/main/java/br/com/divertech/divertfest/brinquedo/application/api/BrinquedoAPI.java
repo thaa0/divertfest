@@ -10,4 +10,13 @@ public interface BrinquedoAPI {
     @PostMapping("locador/brinquedos")
     @ResponseStatus(HttpStatus.CREATED)
     BrinquedoResponse cadastraBrinquedo(@RequestBody BrinquedoRequest brinquedoRequest);
+
+    @GetMapping("locador/brinquedos/{idBrinquedo}")
+    @ResponseStatus(HttpStatus.OK)
+    BrinquedoResponse buscaBrinquedoPorId(@PathVariable String idBrinquedo);
+
+    //editar brinquedo cadastrado
+    @PatchMapping("locador/brinquedos/{idBrinquedo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void editaBrinquedo(@PathVariable String idBrinquedo, @RequestBody BrinquedoRequest brinquedoRequest);
 }

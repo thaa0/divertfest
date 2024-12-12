@@ -4,4 +4,6 @@ import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
 
 public interface BrinquedoRepository {
     void salva(Brinquedo brinquedo);
+
+    Brinquedo buscaBrinquedoPorId(String idBrinquedo);
 }
