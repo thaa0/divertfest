@@ -64,13 +64,13 @@ public class Locador {
 
     public void checaLocadorSuspenso() {
         if (this.status.equals(StatusUsuario.SUSPENSO)) {
-            throw APIException.build(HttpStatus.CONFLICT, "O locador já está suspenso.");
+            throw APIException.build(HttpStatus.CONFLICT, "O locador está suspenso.");
         }
     }
 
     public void checaLocadorAtivo() {
         if (this.status.equals(StatusUsuario.ATIVO)) {
-            throw APIException.build(HttpStatus.CONFLICT, "O locador já está ativo.");
+            throw APIException.build(HttpStatus.CONFLICT, "O locador está ativo.");
         }
     }
 }

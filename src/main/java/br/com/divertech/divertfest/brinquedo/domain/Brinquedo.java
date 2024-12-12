@@ -1,5 +1,6 @@
 package br.com.divertech.divertfest.brinquedo.domain;
 
+import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoEditaRequest;
 import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoRequest;
 import br.com.divertech.divertfest.locador.domain.Locador;
 import lombok.AccessLevel;
@@ -43,5 +44,16 @@ public class Brinquedo {
         this.status = StatusBrinquedo.DISPONIVEL;
         this.imagem = brinquedoRequest.getImagem();
         this.donoBrinquedo = locador;
+    }
+
+    public void edita(BrinquedoEditaRequest brinquedoRequest) {
+        this.nome = brinquedoRequest.getNome();
+        this.descricao = brinquedoRequest.getDescricao();
+        this.categoria = brinquedoRequest.getCategoria();
+        this.imagem = brinquedoRequest.getImagem();
+    }
+
+    public boolean estaAtivo() {
+        return this.status.equals(StatusBrinquedo.DISPONIVEL);
     }
 }
