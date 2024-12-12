@@ -1,4 +1,4 @@
-package br.com.divertech.divertfest.usuario.domain;
+package br.com.divertech.divertfest.usuario.common;
 
 public enum StatusUsuario {
     ATIVO, SUSPENSO;

@@ -30,8 +30,8 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/public/**").permitAll()
-                .antMatchers("/locador").hasRole("LOCADOR")
+                .antMatchers("/v1/public/**").permitAll()
+                .antMatchers("/v1/locador/**").hasRole("LOCADOR")
                 .antMatchers("/locatario").hasRole("LOCATARIO")
                 .anyRequest().authenticated()
                 .and()

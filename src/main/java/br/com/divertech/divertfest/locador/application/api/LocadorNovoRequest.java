@@ -1,9 +1,7 @@
-package br.com.divertech.divertfest.usuario.application.api;
+package br.com.divertech.divertfest.locador.application.api;
 
-import br.com.divertech.divertfest.credencial.domain.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Value;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Email;
@@ -12,11 +10,11 @@ import javax.validation.constraints.Size;
 
 @Getter
 @AllArgsConstructor
-public class UsuarioNovoRequest {
+public class LocadorNovoRequest {
     @Email
-    private final String email;
+    private String email;
     @Size(min = 6)
-    private final String senha;
+    private String senha;
     @NotBlank(message="o campo nao pode estar em branco")
     private String nome;
     private String razaoSocial;
