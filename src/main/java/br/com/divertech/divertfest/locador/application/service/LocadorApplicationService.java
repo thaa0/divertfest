@@ -64,4 +64,13 @@ public class LocadorApplicationService implements LocadorService {
         locadorRepository.salva(locador);
         log.debug("[finish] LocadorApplicationService - suspendeLocador");
     }
+
+    @Override
+    public void checaLocadorSuspenso(UUID idLocador) {
+        log.info("[start] LocadorApplicationService - checaLocadorSuspenso");
+        Locador locador = locadorRepository.buscaLocadorPorId(idLocador);
+        locador.checaLocadorSuspenso();
+        log.debug("[finish] LocadorApplicationService - checaLocadorSuspenso");
+    }
+
 }

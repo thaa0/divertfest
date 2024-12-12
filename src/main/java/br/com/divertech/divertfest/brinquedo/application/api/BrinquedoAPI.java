@@ -3,6 +3,8 @@ package br.com.divertech.divertfest.brinquedo.application.api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("v1/")
 public interface BrinquedoAPI {
@@ -13,10 +15,11 @@ public interface BrinquedoAPI {
 
     @GetMapping("locador/brinquedos/{idBrinquedo}")
     @ResponseStatus(HttpStatus.OK)
-    BrinquedoResponse buscaBrinquedoPorId(@PathVariable String idBrinquedo);
+    BrinquedoResponse buscaBrinquedoPorId(@PathVariable UUID idBrinquedo);
 
     //editar brinquedo cadastrado
     @PatchMapping("locador/brinquedos/{idBrinquedo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void editaBrinquedo(@PathVariable String idBrinquedo, @RequestBody BrinquedoRequest brinquedoRequest);
+    void editaBrinquedo(@PathVariable UUID idBrinquedo, @RequestBody BrinquedoEditaRequest brinquedoEditaRequest);
+
 }
