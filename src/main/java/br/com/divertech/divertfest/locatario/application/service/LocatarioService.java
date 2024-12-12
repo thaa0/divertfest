@@ -10,4 +10,6 @@ public interface LocatarioService {
     LocatarioCriadoResponse cadastraLocatario(LocatarioNovoRequest locatarioNovo);
     LocatarioDetalhadoResponse buscaLocatario(String email);
     LocatarioDetalhadoResponse buscaLocatarioPorId(UUID idLocatario);
+    void suspendeLocatario(UUID idLocatario);
+    void ativaLocatario(UUID idLocatario);
 }

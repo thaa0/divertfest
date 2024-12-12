@@ -9,4 +9,8 @@ public interface LocadorService {
     LocadorCriadoResponse cadastraLocador(LocadorNovoRequest locadorNovo);
     LocadorDetalhadoResponse buscaLocadorPorEmail(String email);
     LocadorDetalhadoResponse buscaLocadorPorId(UUID idLocador);
+
+    void ativaLocador(UUID idLocador);
+
+    void suspendeLocador(UUID idLocador);
 }

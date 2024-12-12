@@ -46,4 +46,24 @@ public class LocatarioApplicationService implements LocatarioService {
         return new LocatarioDetalhadoResponse(locatario);
     }
 
+    @Override
+    public void suspendeLocatario(UUID idLocatario) {
+        log.info("[start] LocatarioApplicationService - suspendeLocatario");
+        Locatario locatario = locatarioRepository.buscaLocatarioPorId(idLocatario);
+        locatario.checaLocatarioSuspenso();
+        locatario.suspende();
+        locatarioRepository.salva(locatario);
+        log.debug("[finish] LocatarioApplicationService - suspendeLocatario");
+    }
+
+    @Override
+    public void ativaLocatario(UUID idLocatario) {
+        log.info("[start] LocatarioApplicationService - ativaLocatario");
+        Locatario locatario = locatarioRepository.buscaLocatarioPorId(idLocatario);
+        locatario.checaLocatarioAtivo();
+        locatario.ativa();
+        locatarioRepository.salva(locatario);
+        log.debug("[finish] LocatarioApplicationService - ativaLocatario");
+    }
+
 }

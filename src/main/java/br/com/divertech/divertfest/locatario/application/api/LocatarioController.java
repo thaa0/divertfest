@@ -37,4 +37,18 @@ public class LocatarioController implements LocatarioAPI {
         log.debug("[finish] LocatarioController - getLocatarioById");
         return locatario;
     }
+
+    @Override
+    public void suspendeLocatario(UUID idLocatario) {
+        log.info("[start] LocatarioController - suspendeLocatario");
+        locatarioService.suspendeLocatario(idLocatario);
+        log.debug("[finish] LocatarioController - suspendeLocatario");
+    }
+
+    @Override
+    public void ativaLocatario(UUID idLocatario) {
+        log.info("[start] LocatarioController - ativaLocatario");
+        locatarioService.ativaLocatario(idLocatario);
+        log.debug("[finish] LocatarioController - ativaLocatario");
+    }
 }

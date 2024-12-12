@@ -1,13 +1,14 @@
 package br.com.divertech.divertfest.locador.domain;
-
 import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
 import br.com.divertech.divertfest.credencial.domain.Role;
+import br.com.divertech.divertfest.handler.APIException;
 import br.com.divertech.divertfest.locador.application.api.LocadorNovoRequest;
 import br.com.divertech.divertfest.usuario.common.StatusUsuario;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -51,5 +52,25 @@ public class Locador {
         this.email = locadorNovo.getEmail();
         this.status = StatusUsuario.ATIVO;
         this.tipoUsuario = Role.LOCADOR;
+    }
+
+    public void ativa() {
+        this.status = StatusUsuario.ATIVO;
+    }
+
+    public void suspende() {
+        this.status = StatusUsuario.SUSPENSO;
+    }
+
+    public void checaLocadorSuspenso() {
+        if (this.status.equals(StatusUsuario.SUSPENSO)) {
+            throw APIException.build(HttpStatus.CONFLICT, "O locador já está suspenso.");
+        }
+    }
+
+    public void checaLocadorAtivo() {
+        if (this.status.equals(StatusUsuario.ATIVO)) {
+            throw APIException.build(HttpStatus.CONFLICT, "O locador já está ativo.");
+        }
     }
 }
