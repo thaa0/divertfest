@@ -44,4 +44,24 @@ public class LocadorApplicationService implements LocadorService {
         log.debug("[finish] LocadorApplicationService - buscaLocadorPorId");
         return new LocadorDetalhadoResponse(locador);
     }
+
+    @Override
+    public void ativaLocador(UUID idLocador) {
+        log.info("[start] LocadorApplicationService - ativaLocador");
+        Locador locador = locadorRepository.buscaLocadorPorId(idLocador);
+        locador.checaLocadorAtivo();
+        locador.ativa();
+        locadorRepository.salva(locador);
+        log.debug("[finish] LocadorApplicationService - ativaLocador");
+    }
+
+    @Override
+    public void suspendeLocador(UUID idLocador) {
+        log.info("[start] LocadorApplicationService - suspendeLocador");
+        Locador locador = locadorRepository.buscaLocadorPorId(idLocador);
+        locador.checaLocadorSuspenso();
+        locador.suspende();
+        locadorRepository.salva(locador);
+        log.debug("[finish] LocadorApplicationService - suspendeLocador");
+    }
 }

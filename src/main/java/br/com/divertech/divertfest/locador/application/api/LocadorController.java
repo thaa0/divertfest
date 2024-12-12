@@ -37,4 +37,18 @@ public class LocadorController implements LocadorAPI {
         log.debug("[finish] LocadorController - getLocadorById");
         return locador;
     }
+
+    @Override
+    public void ativaLocador(UUID idLocador) {
+        log.info("[start] LocadorController - ativaLocador");
+        locadorService.ativaLocador(idLocador);
+        log.debug("[finish] LocadorController - ativaLocador");
+    }
+
+    @Override
+    public void suspendeLocador(UUID idLocador) {
+        log.info("[start] LocadorController - suspendeLocador");
+        locadorService.suspendeLocador(idLocador);
+        log.debug("[finish] LocadorController - suspendeLocador");
+    }
 }

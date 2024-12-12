@@ -21,4 +21,12 @@ public interface LocatarioAPI {
     @GetMapping("/admin/locatario/{idLocatario}")
     @ResponseStatus(code = HttpStatus.OK)
     LocatarioDetalhadoResponse getLocatarioById(@PathVariable UUID idLocatario);
+
+    @PatchMapping("/admin/locatario/{idLocatario}/suspende")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void suspendeLocatario(@PathVariable UUID idLocatario);
+
+    @PatchMapping("/admin/locatario/{idLocatario}/ativa")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void ativaLocatario(@PathVariable UUID idLocatario);
 }

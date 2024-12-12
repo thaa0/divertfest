@@ -1,12 +1,14 @@
 package br.com.divertech.divertfest.locatario.domain;
 
 import br.com.divertech.divertfest.credencial.domain.Role;
+import br.com.divertech.divertfest.handler.APIException;
 import br.com.divertech.divertfest.locatario.application.api.LocatarioNovoRequest;
 import br.com.divertech.divertfest.usuario.common.StatusUsuario;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -47,5 +49,25 @@ public class Locatario {
         this.email = locatarioNovo.getEmail();
         this.status = StatusUsuario.ATIVO;
         this.tipoUsuario = Role.LOCATARIO;
+    }
+
+    public void suspende() {
+        this.status = StatusUsuario.SUSPENSO;
+    }
+
+    public void checaLocatarioSuspenso() {
+        if (this.status.equals(StatusUsuario.SUSPENSO)) {
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Locatario já suspenso");
+        }
+    }
+
+    public void ativa() {
+        this.status = StatusUsuario.ATIVO;
+    }
+
+    public void checaLocatarioAtivo() {
+        if (this.status.equals(StatusUsuario.ATIVO)) {
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Locatario já ativo");
+        }
     }
 }
