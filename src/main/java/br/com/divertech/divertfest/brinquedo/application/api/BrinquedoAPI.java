@@ -20,6 +20,7 @@ public interface BrinquedoAPI {
     //editar brinquedo cadastrado
     @PatchMapping("locador/brinquedos/{idBrinquedo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void editaBrinquedo(@PathVariable UUID idBrinquedo, @RequestBody BrinquedoEditaRequest brinquedoEditaRequest);
+    void editaBrinquedo(@RequestHeader(name = "Authorization", required = true) String token,
+@PathVariable UUID idBrinquedo, @RequestBody BrinquedoEditaRequest brinquedoEditaRequest);
 
 }

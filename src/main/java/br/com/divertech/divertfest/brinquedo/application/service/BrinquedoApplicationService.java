@@ -8,7 +8,6 @@ import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
 import br.com.divertech.divertfest.locador.application.repository.LocadorRepository;
 import br.com.divertech.divertfest.locador.application.service.LocadorService;
 import br.com.divertech.divertfest.locador.domain.Locador;
-import br.com.divertech.divertfest.locatario.application.repository.LocatarioRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -35,13 +34,22 @@ public class BrinquedoApplicationService implements BrinquedoService {
     }
 
     @Override
-    public void edita(UUID idBrinquedo, BrinquedoEditaRequest brinquedoRequest) {
+    public void edita(String emailLocador,UUID idBrinquedo, BrinquedoEditaRequest brinquedoRequest) {
         log.info("[start] BrinquedoApplicationService - edita");
-        Brinquedo brinquedo = brinquedoRepository.buscaBrinquedoPorId(idBrinquedo);
+        Brinquedo brinquedo = detalhaBrinquedo(emailLocador, idBrinquedo);
         locadorService.checaLocadorSuspenso(brinquedo.getDonoBrinquedo().getIdUsuario());
         brinquedo.edita(brinquedoRequest);
         brinquedoRepository.salva(brinquedo);
         log.debug("[finish] BrinquedoApplicationService - edita");
+    }
+
+    private Brinquedo detalhaBrinquedo(String emailLocador, UUID idBrinquedo) {
+        log.info("[start] BrinquedoApplicationService - detalhaBrinquedo");
+        Locador locador= locadorRepository.buscaLocador(emailLocador);
+        Brinquedo brinquedo = brinquedoRepository.buscaBrinquedoPorId(idBrinquedo);
+        brinquedo.pertenceAoLocador(locador);
+        log.debug("[finish] BrinquedoApplicationService - detalhaBrinquedo");
+        return brinquedo;
     }
 
     @Override

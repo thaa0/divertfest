@@ -36,7 +36,7 @@ public class CredencialApplicationService implements CredencialService {
     @Override
     public void criaNovaCredencialLocatario(LocatarioNovoRequest usuarioNovo) {
         log.info("[start] CredencialApplicationService - criaNovaCredencialLocatario");
-        Credencial novaCredencial = new Credencial(usuarioNovo.getEmail(), usuarioNovo.getSenha(),Role.LOCATARIO);
+        Credencial novaCredencial = new Credencial(usuarioNovo.getEmail(), usuarioNovo.getSenha(), Role.LOCATARIO);
         credencialRepository.salva(novaCredencial);
         log.debug("[finish] CredencialApplicationService - criaNovaCredencialLocatario");
     }

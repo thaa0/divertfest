@@ -8,6 +8,6 @@ import java.util.UUID;
 
 public interface BrinquedoService {
     BrinquedoResponse cadastra(BrinquedoRequest brinquedoRequest);
-    void edita(UUID idBrinquedo, BrinquedoEditaRequest brinquedoRequest);
+    void edita(String emailLocador,UUID idBrinquedo, BrinquedoEditaRequest brinquedoRequest);
     BrinquedoResponse buscaBrinquedoPorId(UUID idBrinquedo);
 }

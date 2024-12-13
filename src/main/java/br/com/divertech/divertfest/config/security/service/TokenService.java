@@ -55,4 +55,12 @@ public class TokenService {
             return Optional.of(claims.getSubject());
         }
     }
+
+    public Optional<String> getUsuarioByBearerToken(String token) {
+        log.info("[inicio] TokenService - getUsuarioByBearerToken");
+        String bearerToken = token.substring(7,token.length());
+        log.info(token);
+        log.info("[finaliza] TokenService - getUsuarioByBearerToken");
+        return this.getUsuario(bearerToken);
+    }
 }

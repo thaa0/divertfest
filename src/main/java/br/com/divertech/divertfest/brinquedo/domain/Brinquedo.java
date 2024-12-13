@@ -2,11 +2,13 @@ package br.com.divertech.divertfest.brinquedo.domain;
 
 import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoEditaRequest;
 import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoRequest;
+import br.com.divertech.divertfest.handler.APIException;
 import br.com.divertech.divertfest.locador.domain.Locador;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -55,5 +57,11 @@ public class Brinquedo {
 
     public boolean estaAtivo() {
         return this.status.equals(StatusBrinquedo.DISPONIVEL);
+    }
+
+    public void pertenceAoLocador(Locador locador) {
+        if(!this.donoBrinquedo.getIdUsuario().equals(locador.getIdUsuario())) {
+            throw APIException.build(HttpStatus.UNAUTHORIZED, "Locador não é dono do brinquedo!");
+        }
     }
 }

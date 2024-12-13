@@ -2,6 +2,7 @@ package br.com.divertech.divertfest.brinquedo.application.api;
 
 import br.com.divertech.divertfest.brinquedo.application.service.BrinquedoApplicationService;
 import br.com.divertech.divertfest.brinquedo.application.service.BrinquedoService;
+import br.com.divertech.divertfest.config.security.service.TokenService;
 import br.com.divertech.divertfest.handler.APIException;
 import br.com.divertech.divertfest.locador.application.service.LocadorService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class BrinquedoController implements BrinquedoAPI {
     private final BrinquedoService brinquedoService;
     private final LocadorService locadorService;
+    private final TokenService tokenService;
 
     @Override
     public BrinquedoResponse cadastraBrinquedo(BrinquedoRequest brinquedoRequest) {
@@ -36,9 +38,18 @@ public class BrinquedoController implements BrinquedoAPI {
 
 
     @Override
-    public void editaBrinquedo(UUID idBrinquedo, BrinquedoEditaRequest brinquedoEditaRequest) {
+    public void editaBrinquedo(String token, UUID idBrinquedo, BrinquedoEditaRequest brinquedoEditaRequest) {
         log.info("[start] BrinquedoController - editaBrinquedo");
-        brinquedoService.edita(idBrinquedo, brinquedoEditaRequest);
+        String emailLocador = getUsuarioByToken(token);
+        brinquedoService.edita(emailLocador, idBrinquedo, brinquedoEditaRequest);
         log.debug("[finish] BrinquedoController - editaBrinquedo");
+    }
+
+    private String getUsuarioByToken(String token) {
+        log.debug("[token] {}", token);
+        String locador = tokenService.getUsuarioByBearerToken(token)
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, token));
+        log.info("[locador] {}", locador);
+        return locador;
     }
 }
