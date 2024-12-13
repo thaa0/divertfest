@@ -7,7 +7,7 @@ import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoResponse;
 import java.util.UUID;
 
 public interface BrinquedoService {
-    BrinquedoResponse cadastra(BrinquedoRequest brinquedoRequest);
+    BrinquedoResponse cadastra(String emailLocador, BrinquedoRequest brinquedoRequest);
     void edita(String emailLocador,UUID idBrinquedo, BrinquedoEditaRequest brinquedoRequest);
     BrinquedoResponse buscaBrinquedoPorId(UUID idBrinquedo);
 }
