@@ -11,5 +11,4 @@ public class BrinquedoRequest {
     private String descricao;
     private Categoria categoria;
     private String imagem;
-    private UUID donoBrinquedo;
 }

@@ -11,7 +11,7 @@ public interface BrinquedoAPI {
 
     @PostMapping("locador/brinquedos")
     @ResponseStatus(HttpStatus.CREATED)
-    BrinquedoResponse cadastraBrinquedo(@RequestBody BrinquedoRequest brinquedoRequest);
+    BrinquedoResponse cadastraBrinquedo(@RequestHeader(name = "Authorization", required = true) String token, @RequestBody BrinquedoRequest brinquedoRequest);
 
     @GetMapping("locador/brinquedos/{idBrinquedo}")
     @ResponseStatus(HttpStatus.OK)

@@ -21,9 +21,10 @@ public class BrinquedoController implements BrinquedoAPI {
     private final TokenService tokenService;
 
     @Override
-    public BrinquedoResponse cadastraBrinquedo(BrinquedoRequest brinquedoRequest) {
+    public BrinquedoResponse cadastraBrinquedo(String token, BrinquedoRequest brinquedoRequest) {
         log.info("[start] BrinquedoController - cadastraBrinquedo");
-        BrinquedoResponse brinquedoCadastrado = brinquedoService.cadastra(brinquedoRequest);
+        String emailLocador = getUsuarioByToken(token);
+        BrinquedoResponse brinquedoCadastrado = brinquedoService.cadastra(emailLocador, brinquedoRequest);
         log.debug("[finish] BrinquedoController - cadastraBrinquedo");
         return brinquedoCadastrado;
     }

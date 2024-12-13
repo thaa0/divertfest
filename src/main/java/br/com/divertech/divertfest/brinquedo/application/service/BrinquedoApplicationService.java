@@ -23,10 +23,9 @@ public class BrinquedoApplicationService implements BrinquedoService {
     private final LocadorService locadorService;
 
     @Override
-    public BrinquedoResponse cadastra(BrinquedoRequest brinquedoRequest) {
+    public BrinquedoResponse cadastra(String emailLocador, BrinquedoRequest brinquedoRequest) {
         log.info("[start] BrinquedoApplicationService - cadastra");
-        log.info("ID do dono do brinquedo: {}", brinquedoRequest.getDonoBrinquedo());
-        Locador locador = locadorRepository.buscaLocadorPorId(brinquedoRequest.getDonoBrinquedo());
+        Locador locador = locadorRepository.buscaLocador(emailLocador);
         Brinquedo brinquedo = new Brinquedo(brinquedoRequest, locador);
         brinquedoRepository.salva(brinquedo);
         log.debug("[finish] BrinquedoApplicationService - cadastra");
