@@ -17,10 +17,15 @@ public interface BrinquedoAPI {
     @ResponseStatus(HttpStatus.OK)
     BrinquedoResponse buscaBrinquedoPorId(@PathVariable UUID idBrinquedo);
 
-    //editar brinquedo cadastrado
     @PatchMapping("locador/brinquedos/{idBrinquedo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void editaBrinquedo(@RequestHeader(name = "Authorization", required = true) String token,
 @PathVariable UUID idBrinquedo, @RequestBody BrinquedoEditaRequest brinquedoEditaRequest);
+
+
+    //apagar brinquedos existentes - DIV-12
+    @DeleteMapping("locador/brinquedos/{idBrinquedo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void apagaBrinquedo(@RequestHeader(name = "Authorization", required = true) String token, @PathVariable UUID idBrinquedo);
 
 }

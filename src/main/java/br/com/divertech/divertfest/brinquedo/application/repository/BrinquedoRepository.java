@@ -6,6 +6,6 @@ import java.util.UUID;
 
 public interface BrinquedoRepository {
     void salva(Brinquedo brinquedo);
-
     Brinquedo buscaBrinquedoPorId(UUID idBrinquedo);
+    void apaga(Brinquedo brinquedo);
 }
