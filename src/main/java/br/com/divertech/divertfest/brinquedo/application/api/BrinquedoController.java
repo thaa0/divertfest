@@ -37,7 +37,6 @@ public class BrinquedoController implements BrinquedoAPI {
         return brinquedo;
     }
 
-
     @Override
     public void editaBrinquedo(String token, UUID idBrinquedo, BrinquedoEditaRequest brinquedoEditaRequest) {
         log.info("[start] BrinquedoController - editaBrinquedo");

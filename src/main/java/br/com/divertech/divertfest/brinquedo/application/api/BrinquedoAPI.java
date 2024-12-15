@@ -22,10 +22,7 @@ public interface BrinquedoAPI {
     void editaBrinquedo(@RequestHeader(name = "Authorization", required = true) String token,
 @PathVariable UUID idBrinquedo, @RequestBody BrinquedoEditaRequest brinquedoEditaRequest);
 
-
-    //apagar brinquedos existentes - DIV-12
     @DeleteMapping("locador/brinquedos/{idBrinquedo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void apagaBrinquedo(@RequestHeader(name = "Authorization", required = true) String token, @PathVariable UUID idBrinquedo);
-
 }

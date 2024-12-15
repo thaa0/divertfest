@@ -68,5 +68,4 @@ public class BrinquedoApplicationService implements BrinquedoService {
         log.debug("[finish] BrinquedoApplicationService - apaga");
     }
 
-
 }
