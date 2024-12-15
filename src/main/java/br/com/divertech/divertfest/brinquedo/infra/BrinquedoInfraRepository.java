@@ -2,6 +2,7 @@ package br.com.divertech.divertfest.brinquedo.infra;
 
 import br.com.divertech.divertfest.brinquedo.application.repository.BrinquedoRepository;
 import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
+import br.com.divertech.divertfest.brinquedo.domain.StatusBrinquedo;
 import br.com.divertech.divertfest.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -42,7 +43,7 @@ public class BrinquedoInfraRepository implements BrinquedoRepository {
     @Override
     public List<Brinquedo> listaBrinquedos() {
         log.info("[start] BrinquedoInfraRepository - listaBrinquedos");
-        List<Brinquedo> brinquedos = brinquedoSpringDataJPARepository.findAll();
+        List<Brinquedo> brinquedos = brinquedoSpringDataJPARepository.findAllByStatus(StatusBrinquedo.DISPONIVEL);
         log.debug("[finish] BrinquedoInfraRepository - listaBrinquedos");
         return brinquedos;
     }
