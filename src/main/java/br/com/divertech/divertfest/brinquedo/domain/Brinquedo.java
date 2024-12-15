@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Getter
@@ -33,6 +34,8 @@ public class Brinquedo {
     private Categoria categoria;
     @Enumerated(EnumType.STRING)
     private StatusBrinquedo status;
+    @Column(precision = 10, scale = 2)
+    private BigDecimal precoPorHora;
     @NotBlank
     private String imagem;
     @ManyToOne
@@ -44,6 +47,7 @@ public class Brinquedo {
         this.descricao = brinquedoRequest.getDescricao();
         this.categoria = brinquedoRequest.getCategoria();
         this.status = StatusBrinquedo.DISPONIVEL;
+        this.precoPorHora = brinquedoRequest.getPrecoPorHora();
         this.imagem = brinquedoRequest.getImagem();
         this.donoBrinquedo = locador;
     }
@@ -52,6 +56,7 @@ public class Brinquedo {
         this.nome = brinquedoRequest.getNome();
         this.descricao = brinquedoRequest.getDescricao();
         this.categoria = brinquedoRequest.getCategoria();
+        this.precoPorHora = brinquedoRequest.getPrecoPorHora();
         this.imagem = brinquedoRequest.getImagem();
     }
 
