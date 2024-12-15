@@ -3,6 +3,7 @@ package br.com.divertech.divertfest.brinquedo.application.api;
 import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
 import lombok.Getter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -19,5 +20,9 @@ public class BrinquedoResponse {
         this.dono = brinquedo.getDonoBrinquedo().getNome();
         this.nome = brinquedo.getNome();
         this.status = brinquedo.getStatus().name();
+    }
+
+    public static List<BrinquedoResponse> converte(List<Brinquedo> brinquedos) {
+        return brinquedos.stream().map(BrinquedoResponse::new).toList();
     }
 }

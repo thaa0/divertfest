@@ -10,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @Log4j2
@@ -51,6 +52,14 @@ public class BrinquedoController implements BrinquedoAPI {
         String emailLocador = getUsuarioByToken(token);
         brinquedoService.apaga(emailLocador, idBrinquedo);
         log.debug("[finish] BrinquedoController - apagaBrinquedo");
+    }
+
+    @Override
+    public List<BrinquedoResponse> listaBrinquedos() {
+        log.info("[start] BrinquedoController - listaBrinquedos");
+        List<BrinquedoResponse> brinquedos = brinquedoService.listaBrinquedos();
+        log.debug("[finish] BrinquedoController - listaBrinquedos");
+        return brinquedos;
     }
 
     private String getUsuarioByToken(String token) {

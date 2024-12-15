@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -66,6 +67,14 @@ public class BrinquedoApplicationService implements BrinquedoService {
         locadorService.checaLocadorSuspenso(brinquedo.getDonoBrinquedo().getIdUsuario());
         brinquedoRepository.apaga(brinquedo);
         log.debug("[finish] BrinquedoApplicationService - apaga");
+    }
+
+    @Override
+    public List<BrinquedoResponse> listaBrinquedos() {
+        log.info("[start] BrinquedoApplicationService - listaBrinquedos");
+        List<Brinquedo> brinquedos = brinquedoRepository.listaBrinquedos();
+        log.debug("[finish] BrinquedoApplicationService - listaBrinquedos");
+        return BrinquedoResponse.converte(brinquedos);
     }
 
 }

@@ -3,6 +3,7 @@ package br.com.divertech.divertfest.brinquedo.application.api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -25,4 +26,9 @@ public interface BrinquedoAPI {
     @DeleteMapping("locador/brinquedos/{idBrinquedo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void apagaBrinquedo(@RequestHeader(name = "Authorization", required = true) String token, @PathVariable UUID idBrinquedo);
+
+    @GetMapping("brinquedos")
+    @ResponseStatus(HttpStatus.OK)
+    List<BrinquedoResponse> listaBrinquedos();
+
 }

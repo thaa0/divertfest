@@ -4,6 +4,7 @@ import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoEditaReque
 import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoRequest;
 import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoResponse;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface BrinquedoService {
@@ -11,4 +12,5 @@ public interface BrinquedoService {
     void edita(String emailLocador,UUID idBrinquedo, BrinquedoEditaRequest brinquedoRequest);
     BrinquedoResponse buscaBrinquedoPorId(UUID idBrinquedo);
     void apaga(String emailLocador, UUID idBrinquedo);
+    List<BrinquedoResponse> listaBrinquedos();
 }
