@@ -32,7 +32,7 @@ public class SecurityConfiguration {
                 .authorizeRequests()
                 .antMatchers("/v1/public/**").permitAll()
                 .antMatchers("/v1/locador/**").hasRole("LOCADOR")
-                .antMatchers("/locatario").hasRole("LOCATARIO")
+                .antMatchers("/v1//locatario/**").hasRole("LOCATARIO")
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
