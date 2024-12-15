@@ -10,4 +10,5 @@ public interface BrinquedoService {
     BrinquedoResponse cadastra(String emailLocador, BrinquedoRequest brinquedoRequest);
     void edita(String emailLocador,UUID idBrinquedo, BrinquedoEditaRequest brinquedoRequest);
     BrinquedoResponse buscaBrinquedoPorId(UUID idBrinquedo);
+    void apaga(String emailLocador, UUID idBrinquedo);
 }

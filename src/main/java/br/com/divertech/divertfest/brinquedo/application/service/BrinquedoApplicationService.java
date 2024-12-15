@@ -59,6 +59,13 @@ public class BrinquedoApplicationService implements BrinquedoService {
         return new BrinquedoResponse(brinquedo);
     }
 
-
+    @Override
+    public void apaga(String emailLocador, UUID idBrinquedo) {
+        log.info("[start] BrinquedoApplicationService - apaga");
+        Brinquedo brinquedo = detalhaBrinquedo(emailLocador, idBrinquedo);
+        locadorService.checaLocadorSuspenso(brinquedo.getDonoBrinquedo().getIdUsuario());
+        brinquedoRepository.apaga(brinquedo);
+        log.debug("[finish] BrinquedoApplicationService - apaga");
+    }
 
 }

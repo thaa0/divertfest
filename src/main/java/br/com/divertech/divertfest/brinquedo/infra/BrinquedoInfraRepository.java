@@ -30,4 +30,11 @@ public class BrinquedoInfraRepository implements BrinquedoRepository {
         log.debug("[finish] BrinquedoInfraRepository - buscaBrinquedoPorId");
         return brinquedo;
     }
+
+    @Override
+    public void apaga(Brinquedo brinquedo) {
+        log.info("[start] BrinquedoInfraRepository - apaga");
+        brinquedoSpringDataJPARepository.delete(brinquedo);
+        log.debug("[finish] BrinquedoInfraRepository - apaga");
+    }
 }

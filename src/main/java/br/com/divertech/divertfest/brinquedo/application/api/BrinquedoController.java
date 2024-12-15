@@ -37,13 +37,20 @@ public class BrinquedoController implements BrinquedoAPI {
         return brinquedo;
     }
 
-
     @Override
     public void editaBrinquedo(String token, UUID idBrinquedo, BrinquedoEditaRequest brinquedoEditaRequest) {
         log.info("[start] BrinquedoController - editaBrinquedo");
         String emailLocador = getUsuarioByToken(token);
         brinquedoService.edita(emailLocador, idBrinquedo, brinquedoEditaRequest);
         log.debug("[finish] BrinquedoController - editaBrinquedo");
+    }
+
+    @Override
+    public void apagaBrinquedo(String token, UUID idBrinquedo) {
+        log.info("[start] BrinquedoController - apagaBrinquedo");
+        String emailLocador = getUsuarioByToken(token);
+        brinquedoService.apaga(emailLocador, idBrinquedo);
+        log.debug("[finish] BrinquedoController - apagaBrinquedo");
     }
 
     private String getUsuarioByToken(String token) {
