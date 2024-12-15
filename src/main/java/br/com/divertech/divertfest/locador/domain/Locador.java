@@ -60,6 +60,13 @@ public class Locador {
 
     public void suspende() {
         this.status = StatusUsuario.SUSPENSO;
+        suspendeBrinquedos();
+    }
+
+    private void suspendeBrinquedos() {
+        for(Brinquedo brinquedo:brinquedos){
+            brinquedo.suspender();
+        }
     }
 
     public void checaLocadorSuspenso() {

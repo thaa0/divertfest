@@ -69,4 +69,8 @@ public class Brinquedo {
             throw APIException.build(HttpStatus.UNAUTHORIZED, "Locador não é dono do brinquedo!");
         }
     }
+
+    public void suspender() {
+        this.status=StatusBrinquedo.SUSPENSO;
+    }
 }
