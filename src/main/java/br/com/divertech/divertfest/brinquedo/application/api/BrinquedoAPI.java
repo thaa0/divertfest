@@ -31,4 +31,9 @@ public interface BrinquedoAPI {
     @ResponseStatus(HttpStatus.OK)
     List<BrinquedoResponse> listaBrinquedos();
 
+    //Buscar brinquedos pelo nome
+    @GetMapping("brinquedos/nome/{nome}")
+    @ResponseStatus(HttpStatus.OK)
+    List<BrinquedoResponse> buscaBrinquedoPorNome(@PathVariable String nome);
+
 }

@@ -47,4 +47,12 @@ public class BrinquedoInfraRepository implements BrinquedoRepository {
         log.debug("[finish] BrinquedoInfraRepository - listaBrinquedos");
         return brinquedos;
     }
+
+    @Override
+    public List<Brinquedo> buscaBrinquedoPorNome(String nome) {
+        log.info("[start] BrinquedoInfraRepository - buscaBrinquedoPorNome");
+        List<Brinquedo> brinquedos = brinquedoSpringDataJPARepository.findAllByNomeContainingIgnoreCaseAndStatus(nome, StatusBrinquedo.DISPONIVEL);
+        log.debug("[finish] BrinquedoInfraRepository - buscaBrinquedoPorNome");
+        return brinquedos;
+    }
 }

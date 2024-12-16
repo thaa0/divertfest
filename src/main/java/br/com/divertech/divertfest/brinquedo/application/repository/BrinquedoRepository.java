@@ -10,4 +10,5 @@ public interface BrinquedoRepository {
     Brinquedo buscaBrinquedoPorId(UUID idBrinquedo);
     void apaga(Brinquedo brinquedo);
     List<Brinquedo> listaBrinquedos();
+    List<Brinquedo> buscaBrinquedoPorNome(String nome);
 }
