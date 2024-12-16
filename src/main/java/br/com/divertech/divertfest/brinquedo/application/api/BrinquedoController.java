@@ -18,7 +18,6 @@ import java.util.UUID;
 @RestController
 public class BrinquedoController implements BrinquedoAPI {
     private final BrinquedoService brinquedoService;
-    private final LocadorService locadorService;
     private final TokenService tokenService;
 
     @Override
@@ -76,5 +75,14 @@ public class BrinquedoController implements BrinquedoAPI {
                 .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, token));
         log.info("[locador] {}", locador);
         return locador;
+    }
+
+    @Override
+    public List<BrinquedoResponse> buscaBrinquedoPorLocador(String token, UUID idLocador) {
+        log.info("[start] BrinquedoController - buscaBrinquedoPorLocador");
+        String emailLocador = getUsuarioByToken(token);
+        List<BrinquedoResponse> listaBrinquedos = brinquedoService.buscaTarefaPorUsuario(emailLocador, idLocador);
+        log.debug("[finish] BrinquedoController - buscaBrinquedoPorLocador");
+        return listaBrinquedos;
     }
 }

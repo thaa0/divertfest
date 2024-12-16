@@ -36,4 +36,8 @@ public interface BrinquedoAPI {
     @ResponseStatus(HttpStatus.OK)
     List<BrinquedoResponse> buscaBrinquedoPorNome(@PathVariable String nome);
 
+    @GetMapping("locador/{idLocador}/brinquedos")
+    @ResponseStatus(HttpStatus.OK)
+    List<BrinquedoResponse> buscaBrinquedoPorLocador(@RequestHeader(name = "Authorization",
+            required = true) String token, @PathVariable UUID idLocador);
 }
