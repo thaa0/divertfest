@@ -77,4 +77,12 @@ public class BrinquedoApplicationService implements BrinquedoService {
         return BrinquedoResponse.converte(brinquedos);
     }
 
+    @Override
+    public List<BrinquedoResponse> buscaBrinquedoPorNome(String nome) {
+        log.info("[start] BrinquedoApplicationService - buscaBrinquedoPorNome");
+        List<Brinquedo> brinquedos = brinquedoRepository.buscaBrinquedoPorNome(nome);
+        log.debug("[finish] BrinquedoApplicationService - buscaBrinquedoPorNome");
+        return BrinquedoResponse.converte(brinquedos);
+    }
+
 }

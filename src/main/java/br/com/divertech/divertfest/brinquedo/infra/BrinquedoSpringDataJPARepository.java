@@ -9,4 +9,5 @@ import java.util.UUID;
 
 public interface BrinquedoSpringDataJPARepository extends JpaRepository<Brinquedo, UUID> {
     List<Brinquedo> findAllByStatus(StatusBrinquedo status);
+    List<Brinquedo> findAllByNomeContainingIgnoreCaseAndStatus(String nome, StatusBrinquedo statusBrinquedo);
 }
