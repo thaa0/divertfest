@@ -4,6 +4,7 @@ import br.com.divertech.divertfest.brinquedo.application.repository.BrinquedoRep
 import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
 import br.com.divertech.divertfest.brinquedo.domain.StatusBrinquedo;
 import br.com.divertech.divertfest.handler.APIException;
+import br.com.divertech.divertfest.locador.domain.Locador;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -53,6 +54,14 @@ public class BrinquedoInfraRepository implements BrinquedoRepository {
         log.info("[start] BrinquedoInfraRepository - buscaBrinquedoPorNome");
         List<Brinquedo> brinquedos = brinquedoSpringDataJPARepository.findAllByNomeContainingIgnoreCaseAndStatus(nome, StatusBrinquedo.DISPONIVEL);
         log.debug("[finish] BrinquedoInfraRepository - buscaBrinquedoPorNome");
+        return brinquedos;
+    }
+
+    @Override
+    public List<Brinquedo> buscaBrinquedoDoLocador(Locador locador) {
+        log.info("[start] BrinquedoInfraRepository - buscaBrinquedoDoLocador");
+        List<Brinquedo> brinquedos = brinquedoSpringDataJPARepository.findAllByDonoBrinquedo(locador);
+        log.debug("[finish] BrinquedoInfraRepository - buscaBrinquedoDoLocador");
         return brinquedos;
     }
 }

@@ -80,4 +80,5 @@ public class Locador {
             throw APIException.build(HttpStatus.CONFLICT, "O locador está ativo.");
         }
     }
+
 }

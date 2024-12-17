@@ -14,4 +14,5 @@ public interface BrinquedoService {
     void apaga(String emailLocador, UUID idBrinquedo);
     List<BrinquedoResponse> listaBrinquedos();
     List<BrinquedoResponse> buscaBrinquedoPorNome(String nome);
+    List<BrinquedoResponse> buscaBrinquedoPorUsuario(String emailLocador);
 }

@@ -5,11 +5,13 @@ import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoRequest;
 import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoResponse;
 import br.com.divertech.divertfest.brinquedo.application.repository.BrinquedoRepository;
 import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
+import br.com.divertech.divertfest.handler.APIException;
 import br.com.divertech.divertfest.locador.application.repository.LocadorRepository;
 import br.com.divertech.divertfest.locador.application.service.LocadorService;
 import br.com.divertech.divertfest.locador.domain.Locador;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,7 +36,7 @@ public class BrinquedoApplicationService implements BrinquedoService {
     }
 
     @Override
-    public void edita(String emailLocador,UUID idBrinquedo, BrinquedoEditaRequest brinquedoRequest) {
+    public void edita(String emailLocador, UUID idBrinquedo, BrinquedoEditaRequest brinquedoRequest) {
         log.info("[start] BrinquedoApplicationService - edita");
         Brinquedo brinquedo = detalhaBrinquedo(emailLocador, idBrinquedo);
         locadorService.checaLocadorSuspenso(brinquedo.getDonoBrinquedo().getIdUsuario());
@@ -45,7 +47,7 @@ public class BrinquedoApplicationService implements BrinquedoService {
 
     private Brinquedo detalhaBrinquedo(String emailLocador, UUID idBrinquedo) {
         log.info("[start] BrinquedoApplicationService - detalhaBrinquedo");
-        Locador locador= locadorRepository.buscaLocador(emailLocador);
+        Locador locador = locadorRepository.buscaLocador(emailLocador);
         Brinquedo brinquedo = brinquedoRepository.buscaBrinquedoPorId(idBrinquedo);
         brinquedo.pertenceAoLocador(locador);
         log.debug("[finish] BrinquedoApplicationService - detalhaBrinquedo");
@@ -82,6 +84,15 @@ public class BrinquedoApplicationService implements BrinquedoService {
         log.info("[start] BrinquedoApplicationService - buscaBrinquedoPorNome");
         List<Brinquedo> brinquedos = brinquedoRepository.buscaBrinquedoPorNome(nome);
         log.debug("[finish] BrinquedoApplicationService - buscaBrinquedoPorNome");
+        return BrinquedoResponse.converte(brinquedos);
+    }
+
+    @Override
+    public List<BrinquedoResponse> buscaBrinquedoPorUsuario(String emailLocador) {
+        log.info("[start] BrinquedoApplicationService - buscaBrinquedoPorUsuario");
+        Locador locador = locadorRepository.buscaLocador(emailLocador);
+        List<Brinquedo> brinquedos = brinquedoRepository.buscaBrinquedoDoLocador(locador);
+        log.debug("[finish] BrinquedoApplicationService - buscaBrinquedoPorUsuario");
         return BrinquedoResponse.converte(brinquedos);
     }
 

@@ -78,10 +78,10 @@ public class BrinquedoController implements BrinquedoAPI {
     }
 
     @Override
-    public List<BrinquedoResponse> buscaBrinquedoPorLocador(String token, UUID idLocador) {
+    public List<BrinquedoResponse> buscaBrinquedoPorLocador(String token) {
         log.info("[start] BrinquedoController - buscaBrinquedoPorLocador");
         String emailLocador = getUsuarioByToken(token);
-        List<BrinquedoResponse> listaBrinquedos = brinquedoService.buscaTarefaPorUsuario(emailLocador, idLocador);
+        List<BrinquedoResponse> listaBrinquedos = brinquedoService.buscaBrinquedoPorUsuario(emailLocador);
         log.debug("[finish] BrinquedoController - buscaBrinquedoPorLocador");
         return listaBrinquedos;
     }
