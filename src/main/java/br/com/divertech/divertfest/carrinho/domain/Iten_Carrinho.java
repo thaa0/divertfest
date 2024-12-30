@@ -1,7 +1,10 @@
 package br.com.divertech.divertfest.carrinho.domain;
 
 import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,8 +13,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Getter
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Iten_Carrinho {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
