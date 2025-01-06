@@ -17,7 +17,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Iten_Carrinho {
+public class Item_Carrinho {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "uuid", updatable = false, unique = true, nullable = false)
@@ -26,12 +26,12 @@ public class Iten_Carrinho {
     private Carrinho carrinho;           // Carrinho ao qual o item pertence
     @ManyToOne
     private Brinquedo brinquedo;         // Brinquedo reservado
-    @NotNull
+    @NotNull(message = "Informe a data de reserva!")
     private LocalDate dataReserva;       // Data da reserva do brinquedo
-    @NotNull
+    @NotNull(message = "Não esqueça de informar o horário!")
     private LocalDateTime hora_inicio;   // Hora de início da locação
-    @NotNull
-    private LocalDateTime hora_fim;      // Hora de fim da locação
+    @NotNull(message = "Não esqueça de informar o horário!")
+    private LocalDateTime hora_fim;      // Hora de fim da locação  // Hora de fim da locação
     @Column(precision = 10, scale = 2)
     private BigDecimal precoTotal;       // Preço total da locação do brinquedo
 }

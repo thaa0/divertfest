@@ -24,7 +24,7 @@ public class Carrinho {
     @ManyToOne
     private Locatario locatario;            // Locatário associado ao carrinho
     @OneToMany(mappedBy = "carrinho", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Iten_Carrinho> itens;       // Lista de itens no carrinho
+    private List<Item_Carrinho> itens;       // Lista de itens no carrinho
     @Enumerated(EnumType.STRING)
     private StatusCarrinho status;          // Status do carrinho (ex.: aberto, fechado)
     @Column(precision = 10, scale = 2)
