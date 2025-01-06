@@ -73,4 +73,8 @@ public class Brinquedo {
     public void suspender() {
         this.status=StatusBrinquedo.SUSPENSO;
     }
+
+    public void ativar() {
+        this.status=StatusBrinquedo.DISPONIVEL;
+    }
 }

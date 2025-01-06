@@ -56,6 +56,7 @@ public class Locador {
 
     public void ativa() {
         this.status = StatusUsuario.ATIVO;
+        ativaBrinquedos();
     }
 
     public void suspende() {
@@ -66,6 +67,12 @@ public class Locador {
     private void suspendeBrinquedos() {
         for(Brinquedo brinquedo:brinquedos){
             brinquedo.suspender();
+        }
+    }
+
+    private void ativaBrinquedos() {
+        for(Brinquedo brinquedo:brinquedos){
+            brinquedo.ativar();
         }
     }
 
