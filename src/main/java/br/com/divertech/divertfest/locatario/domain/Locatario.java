@@ -1,5 +1,6 @@
 package br.com.divertech.divertfest.locatario.domain;
 
+import br.com.divertech.divertfest.agenda.domain.Agenda;
 import br.com.divertech.divertfest.credencial.domain.Role;
 import br.com.divertech.divertfest.handler.APIException;
 import br.com.divertech.divertfest.locatario.application.api.LocatarioNovoRequest;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -26,7 +28,6 @@ public class Locatario {
     private UUID idUsuario;
     @NotBlank(message="o campo nao pode estar em branco")
     private String nome;
-    private String razaoSocial;
     @NotBlank(message="o campo nao pode estar em branco")
     private String telefone;
     @NotBlank(message="o campo nao pode estar em branco")
@@ -39,10 +40,11 @@ public class Locatario {
     private String email;
     private StatusUsuario status;
     private Role tipoUsuario;
+    @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Agenda> agendametos;
 
     public Locatario(LocatarioNovoRequest locatarioNovo) {
         this.nome = locatarioNovo.getNome();
-        this.razaoSocial = locatarioNovo.getRazaoSocial();
         this.telefone = locatarioNovo.getTelefone();
         this.documentoIdentificador = locatarioNovo.getDocumentoIdentificador();
         this.endereco = locatarioNovo.getEndereco();
@@ -57,7 +59,7 @@ public class Locatario {
 
     public void checaLocatarioSuspenso() {
         if (this.status.equals(StatusUsuario.SUSPENSO)) {
-            throw APIException.build(HttpStatus.BAD_REQUEST, "Locatario já suspenso");
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Locatario está suspenso!");
         }
     }
 
@@ -67,7 +69,7 @@ public class Locatario {
 
     public void checaLocatarioAtivo() {
         if (this.status.equals(StatusUsuario.ATIVO)) {
-            throw APIException.build(HttpStatus.BAD_REQUEST, "Locatario já ativo");
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Locatario já ativo!");
         }
     }
 }

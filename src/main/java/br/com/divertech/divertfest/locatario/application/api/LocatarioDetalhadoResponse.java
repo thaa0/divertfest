@@ -10,7 +10,6 @@ import java.util.UUID;
 @Getter
 public class LocatarioDetalhadoResponse {
     private UUID idUsuario;
-    private String razaoSocial;
     private String telefone;
     private String documentoIdentificador;
     private Role tipoUsuario;
@@ -18,7 +17,6 @@ public class LocatarioDetalhadoResponse {
 
     public LocatarioDetalhadoResponse(Locatario locatario) {
         this.idUsuario = locatario.getIdUsuario();
-        this.razaoSocial = locatario.getRazaoSocial();
         this.telefone = locatario.getTelefone();
         this.documentoIdentificador = locatario.getDocumentoIdentificador();
         this.tipoUsuario = locatario.getTipoUsuario();

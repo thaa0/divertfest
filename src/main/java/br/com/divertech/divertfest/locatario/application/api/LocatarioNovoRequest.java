@@ -15,7 +15,6 @@ public class LocatarioNovoRequest {
     private String senha;
     @NotBlank(message="o campo nao pode estar em branco")
     private String nome;
-    private String razaoSocial;
     @NotBlank(message="o campo nao pode estar em branco")
     private String telefone;
     @NotBlank(message="o campo nao pode estar em branco")
