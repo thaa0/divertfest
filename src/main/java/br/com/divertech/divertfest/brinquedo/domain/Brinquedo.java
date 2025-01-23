@@ -4,6 +4,7 @@ import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoEditaReque
 import br.com.divertech.divertfest.brinquedo.application.api.BrinquedoRequest;
 import br.com.divertech.divertfest.handler.APIException;
 import br.com.divertech.divertfest.locador.domain.Locador;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,6 +40,7 @@ public class Brinquedo {
     @NotBlank
     private String imagem;
     @ManyToOne
+    @JsonBackReference
     private Locador donoBrinquedo;
 
 

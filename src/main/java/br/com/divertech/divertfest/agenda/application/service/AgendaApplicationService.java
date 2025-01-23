@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @RequiredArgsConstructor
 @Log4j2
@@ -33,16 +34,23 @@ public class AgendaApplicationService implements AgendaService {
         Locatario locatario = locatarioRepository.buscaLocatario(emailLocatario);
         locatario.checaLocatarioSuspenso();
         Brinquedo brinquedo = brinquedoRepository.buscaBrinquedoPorId(agendamento.getIdBrinquedo());
-        isBrinquedoDisponivel(brinquedo, agendamento.getDataReserva(), agendamento.getHora_inicio(), agendamento.getHora_fim());
+        boolean isDisponivel = isBrinquedoDisponivel(brinquedo, agendamento.getDataReserva(), agendamento.getHora_inicio(), agendamento.getHora_fim());
+        if(!isDisponivel){
+            throw APIException.build(HttpStatus.CONFLICT, "Esse brinquedo não está disponivel!");
+        }
         Agenda agenda = new Agenda(agendamento, brinquedo, locatario);
+        agendaRepository.salva(agenda);
         log.debug("[finish] AgendaApplicationService - reservarBrinquedo");
         return new AgendaCriadaResponse(agenda);
     }
 
-    private void isBrinquedoDisponivel(Brinquedo brinquedo, LocalDate dataReserva, LocalDateTime horaInicio,LocalDateTime horaFim) {
-    log.info("[start] AgendaApplicationService - isBrinquedoDisponivel");
-
-    log.debug("[finish] AgendaApplicationService - isBrinquedoDisponivel");
+    private boolean isBrinquedoDisponivel(Brinquedo brinquedo, LocalDate dataReserva, LocalTime horaInicio, LocalTime horaFim) {
+        log.info("[start] AgendaApplicationService - isBrinquedoDisponivel");
+        int count = agendaRepository.countAgendamentosByBrinquedoAndDataAndHora(brinquedo.getIdBrinquedo(), dataReserva, horaInicio, horaFim);
+        log.info("[Numero de agendamento com brinquedo] - {}", count);
+        boolean disponivel = count == 0;
+        log.info("[Brinquedo Disp] - {}", disponivel);
+        log.debug("[finish] AgendaApplicationService - isBrinquedoDisponivel");
+    return disponivel;
     }
-
 }

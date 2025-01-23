@@ -3,6 +3,7 @@ package br.com.divertech.divertfest.agenda.domain;
 import br.com.divertech.divertfest.agenda.application.api.AgendaRequest;
 import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
 import br.com.divertech.divertfest.locatario.domain.Locatario;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
@@ -24,15 +26,16 @@ public class Agenda {
     @Column(columnDefinition = "uuid", updatable = false, unique = true, nullable = false)
     private UUID id;                    // Identificador único do item no carrinho
     @ManyToOne
+    @JsonBackReference
     private Locatario locatario;
     @ManyToOne
     private Brinquedo brinquedo;         // Brinquedo reservado
     @NotNull(message = "Informe a data de reserva!")
     private LocalDate dataReserva;       // Data da reserva do brinquedo
     @NotNull(message = "Não esqueça de informar o horário!")
-    private LocalDateTime hora_inicio;   // Hora de início da locação
+    private LocalTime hora_inicio;   // Hora de início da locação
     @NotNull(message = "Não esqueça de informar o horário!")
-    private LocalDateTime hora_fim;      // Hora de fim da locação  // Hora de fim da locação
+    private LocalTime hora_fim;      // Hora de fim da locação  // Hora de fim da locação
     @Column(precision = 10, scale = 2)
     private BigDecimal precoTotal;       // Preço total da locação do brinquedo
     private StatusAgenda status;
@@ -47,8 +50,8 @@ public class Agenda {
         this.locatario = locatario;
     }
 
-    private BigDecimal calculoPrecoPorHora(BigDecimal precoPorHora, LocalDateTime horaInicio,LocalDateTime horaFim) {
-        long horas = java.time.Duration.between(hora_inicio, hora_fim).toHours();
-        return brinquedo.getPrecoPorHora().multiply(BigDecimal.valueOf(horas));
+    private BigDecimal calculoPrecoPorHora(BigDecimal precoPorHora, LocalTime horaInicio,LocalTime horaFim) {
+        long horas = java.time.Duration.between(horaInicio, horaFim).toHours();
+        return precoPorHora.multiply(BigDecimal.valueOf(horas));
     }
 }

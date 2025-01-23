@@ -5,6 +5,7 @@ import br.com.divertech.divertfest.credencial.domain.Role;
 import br.com.divertech.divertfest.handler.APIException;
 import br.com.divertech.divertfest.locatario.application.api.LocatarioNovoRequest;
 import br.com.divertech.divertfest.usuario.common.StatusUsuario;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,6 +42,7 @@ public class Locatario {
     private StatusUsuario status;
     private Role tipoUsuario;
     @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Agenda> agendametos;
 
     public Locatario(LocatarioNovoRequest locatarioNovo) {
