@@ -2,6 +2,7 @@ package br.com.divertech.divertfest.agenda.domain;
 
 import br.com.divertech.divertfest.agenda.application.api.AgendaRequest;
 import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
+import br.com.divertech.divertfest.locador.domain.Locador;
 import br.com.divertech.divertfest.locatario.domain.Locatario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AccessLevel;
@@ -20,6 +21,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+
 public class Agenda {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +41,8 @@ public class Agenda {
     @Column(precision = 10, scale = 2)
     private BigDecimal precoTotal;       // Preço total da locação do brinquedo
     private StatusAgenda status;
+    @ManyToOne
+    private Locador locador;
 
     public Agenda(AgendaRequest agendamento, Brinquedo brinquedo, Locatario locatario) {
         this.status = StatusAgenda.AGUARDANDO_PAGAMENTO;
@@ -48,10 +52,15 @@ public class Agenda {
         this.dataReserva = agendamento.getDataReserva();
         this.brinquedo = brinquedo;
         this.locatario = locatario;
+        this.locador = brinquedo.getDonoBrinquedo();
     }
 
     private BigDecimal calculoPrecoPorHora(BigDecimal precoPorHora, LocalTime horaInicio,LocalTime horaFim) {
         long horas = java.time.Duration.between(horaInicio, horaFim).toHours();
         return precoPorHora.multiply(BigDecimal.valueOf(horas));
+    }
+
+    public void confirmaAgendamento() {
+        this.status = StatusAgenda.CONFIRMADO;
     }
 }
