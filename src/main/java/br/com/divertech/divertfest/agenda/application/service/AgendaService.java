@@ -10,6 +10,7 @@ public interface AgendaService {
     AgendaCriadaResponse reservarBrinquedo(String emailLocatario, AgendaRequest agendamento);
     List<AgendamentoResponse> historicoLocacoesLocador(String emailLocador);
     List<AgendamentoResponse> historicoLocacoes(String emailLocatario);
-
     void confirmaAgendamento(String idAgendamento);
+    List<AgendamentoResponse> historicoLocacoesFinalizadas(String emailLocador);
+    void finalizarAgendamento(String idAgendamento);
 }

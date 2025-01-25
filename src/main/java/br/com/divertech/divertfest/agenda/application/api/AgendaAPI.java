@@ -27,4 +27,14 @@ public interface AgendaAPI {
     @PutMapping("admin/agendamentos/{idAgendamento}/confirmar")
     @ResponseStatus(HttpStatus.OK)
     void confirmarAgendamento(@RequestHeader(name = "Authorization", required = true) String token, @PathVariable String idAgendamento);
+
+    //DIV 36 - Visualizar todas as locações finalizadas
+    @GetMapping("locador/agendamentos/finalizados")
+    @ResponseStatus(HttpStatus.OK)
+    List<AgendamentoResponse> historicoLocacoesFinalizadas(@RequestHeader(name = "Authorization", required = true) String token);
+
+    //Admin - Altera o status do agendamento para finalizado.
+    @PutMapping("admin/agendamentos/{idAgendamento}/finalizar")
+    @ResponseStatus(HttpStatus.OK)
+    void finalizarAgendamento(@RequestHeader(name = "Authorization", required = true) String token, @PathVariable String idAgendamento);
 }

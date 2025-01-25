@@ -63,4 +63,8 @@ public class Agenda {
     public void confirmaAgendamento() {
         this.status = StatusAgenda.CONFIRMADO;
     }
+
+    public void finalizaAgendamento() {
+        this.status = StatusAgenda.FINALIZADO;
+    }
 }

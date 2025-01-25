@@ -56,6 +56,24 @@ public class AgendaController implements AgendaAPI {
 
     }
 
+    @Override
+    public List<AgendamentoResponse> historicoLocacoesFinalizadas(String token) {
+        log.info("[start] AgendaController - historicoLocacoesFinalizadas");
+        String emailLocador = getUsuarioByToken(token);
+        List<AgendamentoResponse> historicoLocacoes = agendaService.historicoLocacoesFinalizadas(emailLocador);
+        log.debug("[finish] AgendaController - historicoLocacoesFinalizadas");
+        return historicoLocacoes;
+    }
+
+    @Override
+    public void finalizarAgendamento(String token, String idAgendamento) {
+        log.info("[start] AgendaController - finalizarAgendamento");
+        String email = getUsuarioByToken(token);
+        agendaService.finalizarAgendamento(idAgendamento);
+        log.info("[emailLocatario] {}", email);
+        log.debug("[finish] AgendaController - finalizarAgendamento");
+    }
+
 
     private String getUsuarioByToken(String token) {
         log.debug("[token] {}", token);

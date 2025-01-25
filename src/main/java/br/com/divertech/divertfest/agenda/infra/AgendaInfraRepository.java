@@ -59,4 +59,12 @@ public class AgendaInfraRepository implements AgendaRepository {
         log.debug("[finish] AgendaInfraRepository - buscaAgendamentosPorLocador");
         return agendamentos;
     }
+
+    @Override
+    public List<Agenda> buscaAgendamentosFinalizadosPorLocador(Locador locador) {
+        log.info("[start] AgendaInfraRepository - buscaAgendamentosFinalizadosPorLocador");
+        List<Agenda> agendamentos = agendaSpringDataJPARepository.findByLocadorAndStatus(locador, StatusAgenda.FINALIZADO);
+        log.debug("[finish] AgendaInfraRepository - buscaAgendamentosFinalizadosPorLocador");
+        return agendamentos;
+    }
 }
