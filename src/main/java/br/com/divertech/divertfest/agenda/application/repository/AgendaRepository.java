@@ -12,10 +12,8 @@ import java.util.UUID;
 public interface AgendaRepository {
     int countAgendamentosByBrinquedoAndDataAndHora(UUID idBrinquedo, LocalDate dataReserva, LocalTime horaInicio, LocalTime horaFim);
     void salva(Agenda agenda);
-
     List<Agenda> buscaAgendamentosPorLocatario(Locatario locatario);
-
     Agenda buscaAgendamentoPorId(String idAgendamento);
-
     List<Agenda> buscaAgendamentosPorLocador(Locador locador);
+    List<Agenda> buscaAgendamentosFinalizadosPorLocador(Locador locador);
 }

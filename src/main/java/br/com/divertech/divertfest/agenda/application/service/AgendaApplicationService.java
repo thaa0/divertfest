@@ -72,6 +72,24 @@ public class AgendaApplicationService implements AgendaService {
         log.debug("[finish] AgendaApplicationService - confirmaAgendamento");
     }
 
+    @Override
+    public List<AgendamentoResponse> historicoLocacoesFinalizadas(String emailLocador) {
+        log.info("[start] AgendaApplicationService - historicoLocacoesFinalizadas");
+        Locador locador = locadorRepository.buscaLocador(emailLocador);
+        List<Agenda> agendamentos = agendaRepository.buscaAgendamentosFinalizadosPorLocador(locador);
+        log.debug("[finish] AgendaApplicationService - historicoLocacoesFinalizadas");
+        return AgendamentoResponse.from(agendamentos);
+    }
+
+    @Override
+    public void finalizarAgendamento(String idAgendamento) {
+        log.info("[start] AgendaApplicationService - finalizarAgendamento");
+        Agenda agenda = agendaRepository.buscaAgendamentoPorId(idAgendamento);
+        agenda.finalizaAgendamento();
+        agendaRepository.salva(agenda);
+        log.debug("[finish] AgendaApplicationService - finalizarAgendamento");
+    }
+
     private boolean isBrinquedoDisponivel(Brinquedo brinquedo, LocalDate dataReserva, LocalTime horaInicio, LocalTime horaFim) {
         log.info("[start] AgendaApplicationService - isBrinquedoDisponivel");
         int count = agendaRepository.countAgendamentosByBrinquedoAndDataAndHora(brinquedo.getIdBrinquedo(), dataReserva, horaInicio, horaFim);
