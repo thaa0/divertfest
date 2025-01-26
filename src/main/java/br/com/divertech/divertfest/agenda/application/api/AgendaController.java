@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -72,6 +73,14 @@ public class AgendaController implements AgendaAPI {
         agendaService.finalizarAgendamento(idAgendamento);
         log.info("[emailLocatario] {}", email);
         log.debug("[finish] AgendaController - finalizarAgendamento");
+    }
+
+    @Override
+    public void cancelaAgendamento(String token, UUID idAgendamento) {
+        log.info("[start] AgendaController - cancelaAgendamento");
+        String email = getUsuarioByToken(token);
+        agendaService.cancelaAgendamento(idAgendamento, email);
+        log.debug("[finish] AgendaController - cancelaAgendamento");
     }
 
 

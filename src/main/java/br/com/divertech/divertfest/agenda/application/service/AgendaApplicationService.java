@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Log4j2
@@ -88,6 +89,18 @@ public class AgendaApplicationService implements AgendaService {
         agenda.finalizaAgendamento();
         agendaRepository.salva(agenda);
         log.debug("[finish] AgendaApplicationService - finalizarAgendamento");
+    }
+
+    @Override
+    public void cancelaAgendamento(UUID idAgendamento, String email) {
+        log.info("[start] AgendaApplicationService - cancelaAgendamento");
+        Locatario locatario = locatarioRepository.buscaLocatario(email);
+        Agenda agendamento = agendaRepository.buscaAgendamentoPorId(String.valueOf(idAgendamento));
+        agendamento.pertenceAoLocatario(locatario);
+        agendamento.cancela();
+        agendaRepository.salva(agendamento);
+        //notificaLocador ultilizando try-catch
+        log.debug("[finish] AgendaApplicationService - cancelaAgendamento");
     }
 
     private boolean isBrinquedoDisponivel(Brinquedo brinquedo, LocalDate dataReserva, LocalTime horaInicio, LocalTime horaFim) {
