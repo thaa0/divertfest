@@ -16,4 +16,5 @@ public interface AgendaRepository {
     Agenda buscaAgendamentoPorId(String idAgendamento);
     List<Agenda> buscaAgendamentosPorLocador(Locador locador);
     List<Agenda> buscaAgendamentosFinalizadosPorLocador(Locador locador);
+    List<Agenda> buscaAgendamentosConfirmados();
 }
