@@ -2,6 +2,7 @@ package br.com.divertech.divertfest.agenda.domain;
 
 import br.com.divertech.divertfest.agenda.application.api.AgendaRequest;
 import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
+import br.com.divertech.divertfest.handler.APIException;
 import br.com.divertech.divertfest.locador.domain.Locador;
 import br.com.divertech.divertfest.locatario.domain.Locatario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -9,6 +10,8 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -66,5 +69,15 @@ public class Agenda {
 
     public void finalizaAgendamento() {
         this.status = StatusAgenda.FINALIZADO;
+    }
+
+    public void pertenceAoLocatario(Locatario locatario) {
+        if(!this.locatario.equals(locatario)){
+            throw APIException.build(HttpStatus.UNAUTHORIZED, "Locatário não é dono do agendamento solicitada!");
+        };
+    }
+
+    public void cancela() {
+        this.status = StatusAgenda.CANCELADO;
     }
 }

@@ -29,7 +29,7 @@ public class TokenService {
     public String gerarToken(Credencial credencial) {
         log.info("[inicio] TokenService - criação de token");
         String token = Jwts.builder()
-                .setIssuer("API do Produdoro")
+                .setIssuer("API do Divertfest")
                 .setSubject(credencial.getUsuario())
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(LocalDateTime.now()

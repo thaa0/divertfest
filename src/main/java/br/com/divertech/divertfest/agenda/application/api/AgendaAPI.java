@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("v1/")
@@ -24,7 +25,7 @@ public interface AgendaAPI {
     List<AgendamentoResponse> historicoLocacoesLocador(@RequestHeader(name = "Authorization", required = true) String token);
 
     //altera status do agendamento para confirmado - DIV 44
-    @PutMapping("admin/agendamentos/{idAgendamento}/confirmar")
+    @PatchMapping("admin/agendamentos/{idAgendamento}/confirmar")
     @ResponseStatus(HttpStatus.OK)
     void confirmarAgendamento(@RequestHeader(name = "Authorization", required = true) String token, @PathVariable String idAgendamento);
 
@@ -34,7 +35,11 @@ public interface AgendaAPI {
     List<AgendamentoResponse> historicoLocacoesFinalizadas(@RequestHeader(name = "Authorization", required = true) String token);
 
     //Admin - Altera o status do agendamento para finalizado.
-    @PutMapping("admin/agendamentos/{idAgendamento}/finalizar")
+    @PatchMapping("admin/agendamentos/{idAgendamento}/finalizar")
     @ResponseStatus(HttpStatus.OK)
     void finalizarAgendamento(@RequestHeader(name = "Authorization", required = true) String token, @PathVariable String idAgendamento);
+
+    @PatchMapping("locatario/agendamentos/{idAgendamento}/cancelar")
+    @ResponseStatus(HttpStatus.OK)
+    void cancelaAgendamento(@RequestHeader(name = "Authorization", required = true) String token, @PathVariable UUID idAgendamento);
 }
