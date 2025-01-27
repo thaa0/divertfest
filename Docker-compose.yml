@@ -1,0 +1,14 @@
+services:
+  postgres_container:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: divertfestdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data_container:/var/lib/postgresql/data
+
+volumes:
+  postgres_data_container:
