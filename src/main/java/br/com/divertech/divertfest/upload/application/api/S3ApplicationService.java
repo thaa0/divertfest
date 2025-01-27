@@ -8,14 +8,14 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import java.io.IOException;
 
 @Service
-public class S3Service {
+public class S3ApplicationService {
 
     private final S3Client s3Client;
 
     @Value("${aws.s3.bucket-name}")
     private String bucketName;
 
-    public S3Service(S3Client s3Client) {
+    public S3ApplicationService(S3Client s3Client) {
         this.s3Client = s3Client;
     }
 
