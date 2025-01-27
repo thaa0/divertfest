@@ -17,3 +17,10 @@ divertfest:
   jwt:
     expiracao: ${JWT_TEMPO_EXPIRACAO:15}
     chave: ${JWT_CHAVE:123456}
+
+aws:
+  s3:
+    bucket-name: "divertfestbucket"
+    region: "us-east-2"
+    access-key: "SUAS_ACCESS_KEY"
+    secret-key: "SUAS_SECRET_KEY"
