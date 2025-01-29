@@ -20,7 +20,6 @@ application-env.properties
 *.iml
 *.ipr
 *.env
-application-env.properties
 
 
 ### NetBeans ###
