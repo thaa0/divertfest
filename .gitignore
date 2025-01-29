@@ -21,7 +21,6 @@ application-env.properties
 *.ipr
 *.env
 application-env.properties
-application-env.properties
 
 
 ### NetBeans ###
