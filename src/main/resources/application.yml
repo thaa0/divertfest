@@ -11,7 +11,26 @@ spring:
     properties:
       hibernate:
         default_schema: divertfest
+  config:
+    import: classpath:application-env.properties
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: divertfest
   datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USER}
+    password: ${DATASOURCE_PASS}
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      poolName: SpringBootJPAHikariCP
+      minimumIdle: 15
+      maximumPoolSize: 50
+      connectionTimeout: 30000
+      idleTimeout: 30000
     driver-class-name: org.postgresql.Driver
     url: ${DATASOURCE_URL}
     username: ${DATASOURCE_USER}
@@ -27,6 +46,10 @@ spring:
 springdoc:
   swagger-ui:
     path: /swagger
+
+logging:
+  level:
+    com.divertech: ${LOG_LEVEL}
 
 logging:
   level:

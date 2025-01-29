@@ -16,8 +16,8 @@ public class AutenticacaoController implements AutenticacaoAPI {
     @Override
     public TokenResponse autentica(AutenticacaoRequest autenticacaoRequest) throws AuthenticationException {
         log.info("[start] AutenticacaoController - autentica");
-        var token = autenticacaoService.autentica(autenticacaoRequest.getUserPassToken());
+        TokenResponse token = autenticacaoService.autentica(autenticacaoRequest.getUserPassToken());
         log.debug("[finish] AutenticacaoController - autentica");
-        return new TokenResponse(token);
+        return token;
     }
 }

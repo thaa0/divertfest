@@ -29,6 +29,7 @@ public class Credencial implements UserDetails {
     @NotNull
     @Size(max = 60)
     private String senha;
+    @Getter
     private Role role;
     @Getter
     private boolean validado;

@@ -1,10 +1,8 @@
 package br.com.divertech.divertfest.config.security.service;
 
 import br.com.divertech.divertfest.credencial.domain.Credencial;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
+import br.com.divertech.divertfest.credencial.domain.Role;
+import io.jsonwebtoken.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -28,8 +26,11 @@ public class TokenService {
 
     public String gerarToken(Credencial credencial) {
         log.info("[inicio] TokenService - criação de token");
+        String role = credencial.getRole().toString(); // ou o método que retorna o tipo de usuário
+
         String token = Jwts.builder()
                 .setIssuer("API do Divertfest")
+                .claim("role", role)  // Aqui você coloca a role
                 .setSubject(credencial.getUsuario())
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(LocalDateTime.now()
@@ -40,6 +41,14 @@ public class TokenService {
                 .compact();
         log.info("[finaliza] TokenService - criação de token");
         return token;
+    }
+
+    public String obterRoleDoToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(chave)
+                .parseClaimsJws(token)  // O token com o formato correto
+                .getBody();
+        return claims.get("role", String.class);  // Obtém a role do token
     }
 
     public Optional<String> getUsuario(String token) {

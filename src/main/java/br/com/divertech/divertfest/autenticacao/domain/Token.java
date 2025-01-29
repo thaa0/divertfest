@@ -1,5 +1,6 @@
 package br.com.divertech.divertfest.autenticacao.domain;
 
+import br.com.divertech.divertfest.credencial.domain.Role;
 import lombok.*;
 
 @Getter
