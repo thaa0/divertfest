@@ -9,6 +9,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.Random;
 
 @Service
@@ -42,7 +43,7 @@ public class S3Service {
 
         // Gera o nome aleatório com a extensão do arquivo original
         String randomFileName = generateRandomFileName();
-        String fileExtension = getFileExtension(file.getOriginalFilename());
+        String fileExtension = getFileExtension(Objects.requireNonNull(file.getOriginalFilename()));
         String key = "uploads/" + randomFileName + fileExtension;
 
         // Cria um arquivo temporário para o upload
