@@ -14,7 +14,7 @@ As principais tecnologias utilizadas no desenvolvimento da API são:
 - **Java 11**  
 - **Spring Boot**  
 - **Spring Data JPA**  
-- **MySQL**
+- *PostgreSQL**
 - **Docker**
 - **Spring Security** para autenticação e autorização  
 - **Swagger** para documentação da API
@@ -26,10 +26,5 @@ As principais tecnologias utilizadas no desenvolvimento da API são:
 - **DOCKER**  
 - **Maven**
 
-## 📌 Funcionalidades Implementadas
-- Cadastro de usuários
-- Cadastro e consulta de brinquedos
-- Sistema de autenticação e autorização
-- Gerenciamento de reservas
 ## 🛡️ Licença
 Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para mais informações.
