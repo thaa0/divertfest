@@ -16,7 +16,7 @@ import java.util.List;
 public class SchedulerService {
     private final AgendaRepository agendaRepository;
 
-    @Scheduled(cron = "1 * * * * *")
+    @Scheduled(cron = "* * 1 * * *")
     public void finalizaAgendamentos() {
         log.info("[start] SchedulerService - finalizaAgendamentos");
         List<Agenda> agendamentos = agendaRepository.buscaAgendamentosConfirmados();
