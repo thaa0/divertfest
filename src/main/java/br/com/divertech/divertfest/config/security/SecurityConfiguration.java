@@ -6,6 +6,7 @@ import br.com.divertech.divertfest.credencial.application.service.CredencialAppl
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,11 +33,14 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/v1/public/**").permitAll()
                 .antMatchers("/v1/locador/**").hasRole("LOCADOR")
                 .antMatchers("/v1/locatario/**").hasRole("LOCATARIO")
                 .antMatchers("/v1/admin/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
