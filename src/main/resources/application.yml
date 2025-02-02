@@ -11,6 +11,18 @@ spring:
     properties:
       hibernate:
         default_schema: divertfest
+  mail:
+    host: ${MAILGUN_SMTP_HOST}
+    port: ${MAILGUN_SMTP_PORT}
+    username: ${MAILGUN_SMTP_USERNAME}
+    password: ${MAILGUN_SMTP_PASSWORD}
+    protocol: smtp
+    smtp:
+      auth: true
+      starttls:
+        enable: true
+        required: true
+
 
   datasource:
     driver-class-name: org.postgresql.Driver

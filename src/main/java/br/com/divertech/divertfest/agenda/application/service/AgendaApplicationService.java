@@ -30,6 +30,7 @@ public class AgendaApplicationService implements AgendaService {
     private final LocadorRepository locadorRepository;
     private final BrinquedoRepository brinquedoRepository;
     private final AgendaRepository agendaRepository;
+    private final EmailSenderService emailSenderService;
 
     @Override
     public AgendaCriadaResponse reservarBrinquedo(String emailLocatario, AgendaRequest agendamento) {
@@ -99,7 +100,11 @@ public class AgendaApplicationService implements AgendaService {
         agendamento.pertenceAoLocatario(locatario);
         agendamento.cancela();
         agendaRepository.salva(agendamento);
-        //notificaLocador ultilizando try-catch
+        try {
+            emailSenderService.sendCancelamento(agendamento);
+        } catch (Exception e) {
+            log.error("[error] Falha ao enviar e-mail de cancelamento - {}", e.getMessage());
+        }
         log.debug("[finish] AgendaApplicationService - cancelaAgendamento");
     }
 
