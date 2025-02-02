@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -34,7 +35,9 @@ public class Agenda {
     @JsonBackReference
     private Locatario locatario;
     @ManyToOne
-    private Brinquedo brinquedo;         // Brinquedo reservado
+    private Brinquedo brinquedo;
+    @NotEmpty(message = "Informe o local de reserva")
+    private String endereco;
     @NotNull(message = "Informe a data de reserva!")
     private LocalDate dataReserva;       // Data da reserva do brinquedo
     @NotNull(message = "Não esqueça de informar o horário!")
@@ -50,6 +53,7 @@ public class Agenda {
     public Agenda(AgendaRequest agendamento, Brinquedo brinquedo, Locatario locatario) {
         this.status = StatusAgenda.AGUARDANDO_PAGAMENTO;
         this.precoTotal = calculoPrecoPorHora(brinquedo.getPrecoPorHora(),agendamento.getHora_inicio(),agendamento.getHora_fim());
+        this.endereco = agendamento.getEndereco();
         this.hora_fim = agendamento.getHora_fim();
         this.hora_inicio = agendamento.getHora_inicio();
         this.dataReserva = agendamento.getDataReserva();
