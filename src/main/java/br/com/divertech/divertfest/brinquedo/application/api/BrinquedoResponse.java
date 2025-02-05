@@ -16,6 +16,8 @@ public class BrinquedoResponse {
     private String status;
     private BigDecimal precoPorHora;
     private String imagem;
+    private String descricao;
+
 
     public BrinquedoResponse(Brinquedo brinquedo) {
         this.idBrinquedo = brinquedo.getIdBrinquedo();
@@ -25,6 +27,7 @@ public class BrinquedoResponse {
         this.status = brinquedo.getStatus().name();
         this.precoPorHora = brinquedo.getPrecoPorHora();
         this.imagem = brinquedo.getImagem();
+        this.descricao = brinquedo.getDescricao();
     }
 
     public static List<BrinquedoResponse> converte(List<Brinquedo> brinquedos) {
