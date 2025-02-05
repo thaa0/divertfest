@@ -29,4 +29,8 @@ public interface LocadorAPI {
     @PatchMapping("/admin/locador/{idLocador}/suspende")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void suspendeLocador(@PathVariable UUID idLocador);
+
+    @PatchMapping("/locador/{idLocador}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void editaLocador(@RequestHeader(name = "Authorization", required = true) String token, @RequestBody @Valid LocadorEditaRequest locadorAtualizado);
 }
