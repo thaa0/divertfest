@@ -82,6 +82,13 @@ public class Agenda {
     }
 
     public void cancela() {
-        this.status = StatusAgenda.CANCELADO;
+            this.status = StatusAgenda.CANCELADO;
+
+    }
+
+    public void validaSePodeCancelar() {
+        if(LocalDate.now().isAfter(this.dataReserva.minusDays(2))){
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Você só pode cancelar até 2 dias antes da data de reserva!");
+        }
     }
 }

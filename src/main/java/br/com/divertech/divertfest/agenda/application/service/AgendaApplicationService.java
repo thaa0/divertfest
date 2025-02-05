@@ -98,6 +98,7 @@ public class AgendaApplicationService implements AgendaService {
         Locatario locatario = locatarioRepository.buscaLocatario(email);
         Agenda agendamento = agendaRepository.buscaAgendamentoPorId(String.valueOf(idAgendamento));
         agendamento.pertenceAoLocatario(locatario);
+        agendamento.validaSePodeCancelar();
         agendamento.cancela();
         agendaRepository.salva(agendamento);
         try {
