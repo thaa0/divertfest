@@ -1,6 +1,7 @@
 package br.com.divertech.divertfest.locador.application.service;
 import br.com.divertech.divertfest.locador.application.api.LocadorCriadoResponse;
 import br.com.divertech.divertfest.locador.application.api.LocadorDetalhadoResponse;
+import br.com.divertech.divertfest.locador.application.api.LocadorEditaRequest;
 import br.com.divertech.divertfest.locador.application.api.LocadorNovoRequest;
 
 import java.util.UUID;
@@ -12,4 +13,5 @@ public interface LocadorService {
     void ativaLocador(UUID idLocador);
     void suspendeLocador(UUID idLocador);
     void checaLocadorSuspenso(UUID idLocador);
+    void editaLocador(String token, LocadorEditaRequest locadorAtualizado);
 }

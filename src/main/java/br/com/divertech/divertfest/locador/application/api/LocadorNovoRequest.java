@@ -1,9 +1,11 @@
 package br.com.divertech.divertfest.locador.application.api;
 
+import br.com.divertech.divertfest.locador.domain.DadosBancarios;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -25,4 +27,5 @@ public class LocadorNovoRequest {
     private String documentoIdentificador;
     @NotBlank(message="o campo nao pode estar em branco")
     private String endereco;
+    private DadosBancarios dadosBancarios;
 }

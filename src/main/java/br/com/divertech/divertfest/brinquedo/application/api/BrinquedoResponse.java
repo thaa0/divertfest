@@ -18,6 +18,7 @@ public class BrinquedoResponse {
     private String imagem;
     private String descricao;
 
+    private BigDecimal preco;
 
     public BrinquedoResponse(Brinquedo brinquedo) {
         this.idBrinquedo = brinquedo.getIdBrinquedo();

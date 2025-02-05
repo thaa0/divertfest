@@ -1,13 +1,17 @@
 package br.com.divertech.divertfest.locador.application.service;
 
+import br.com.divertech.divertfest.config.security.service.TokenService;
 import br.com.divertech.divertfest.credencial.application.service.CredencialService;
+import br.com.divertech.divertfest.handler.APIException;
 import br.com.divertech.divertfest.locador.application.api.LocadorCriadoResponse;
 import br.com.divertech.divertfest.locador.application.api.LocadorDetalhadoResponse;
+import br.com.divertech.divertfest.locador.application.api.LocadorEditaRequest;
 import br.com.divertech.divertfest.locador.application.api.LocadorNovoRequest;
 import br.com.divertech.divertfest.locador.application.repository.LocadorRepository;
 import br.com.divertech.divertfest.locador.domain.Locador;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -17,8 +21,10 @@ import java.util.UUID;
 @Log4j2
 public class LocadorApplicationService implements LocadorService {
 
+    private final TokenService tokenService;
     private final LocadorRepository locadorRepository;
     private final CredencialService credencialService;
+
     @Override
     public LocadorCriadoResponse cadastraLocador(LocadorNovoRequest locadorNovo) {
         log.info("[start] LocadorApplicationService - cadastraLocador");
@@ -71,6 +77,17 @@ public class LocadorApplicationService implements LocadorService {
         Locador locador = locadorRepository.buscaLocadorPorId(idLocador);
         locador.checaLocadorSuspenso();
         log.debug("[finish] LocadorApplicationService - checaLocadorSuspenso");
+    }
+
+    @Override
+    public void editaLocador(String token, LocadorEditaRequest locadorAtualizado) {
+        log.info("[start] LocadorApplicationService - editaLocador");
+        String email = tokenService.getUsuarioByBearerToken(token)
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, token));
+        Locador locador = locadorRepository.buscaLocador(email);
+        locador.edita(locadorAtualizado);
+        locadorRepository.salva(locador);
+        log.debug("[finish] LocadorApplicationService - editaLocador");
     }
 
 }

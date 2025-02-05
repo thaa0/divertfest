@@ -2,6 +2,7 @@ package br.com.divertech.divertfest.locador.domain;
 import br.com.divertech.divertfest.brinquedo.domain.Brinquedo;
 import br.com.divertech.divertfest.credencial.domain.Role;
 import br.com.divertech.divertfest.handler.APIException;
+import br.com.divertech.divertfest.locador.application.api.LocadorEditaRequest;
 import br.com.divertech.divertfest.locador.application.api.LocadorNovoRequest;
 import br.com.divertech.divertfest.usuario.common.StatusUsuario;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -43,12 +44,15 @@ public class Locador {
     @JsonManagedReference
     private List<Brinquedo> brinquedos;
     private Role tipoUsuario;
+    @Embedded
+    private DadosBancarios dadosBancarios;
     private StatusUsuario status;
 
     public Locador(LocadorNovoRequest locadorNovo) {
         this.nome = locadorNovo.getNome();
         this.razaoSocial = locadorNovo.getRazaoSocial();
         this.telefone = locadorNovo.getTelefone();
+        this.dadosBancarios = locadorNovo.getDadosBancarios();
         this.documentoIdentificador = locadorNovo.getDocumentoIdentificador();
         this.endereco = locadorNovo.getEndereco();
         this.email = locadorNovo.getEmail();
@@ -90,4 +94,11 @@ public class Locador {
         }
     }
 
+    public void edita(LocadorEditaRequest locadorAtualizado) {
+        this.nome = locadorAtualizado.getNome();
+        this.razaoSocial = locadorAtualizado.getRazaoSocial();
+        this.telefone = locadorAtualizado.getTelefone();
+        this.dadosBancarios = locadorAtualizado.getDadosBancarios();
+        this.endereco = locadorAtualizado.getEndereco();
+    }
 }

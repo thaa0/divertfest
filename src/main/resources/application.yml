@@ -43,7 +43,7 @@ springdoc:
 
 logging:
   level:
-    com.divertech: ${LOG_LEVEL}
+    br.com.divertech.divertfest: ${LOG_LEVEL}
 
 divertfest:
   jwt:

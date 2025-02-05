@@ -51,4 +51,12 @@ public class LocadorController implements LocadorAPI {
         locadorService.suspendeLocador(idLocador);
         log.debug("[finish] LocadorController - suspendeLocador");
     }
+
+    @Override
+    public void editaLocador(String token, LocadorEditaRequest locadorAtualizado) {
+        log.info("[start] LocadorController - editaLocador");
+        locadorService.editaLocador(token, locadorAtualizado);
+        log.debug("[finish] LocadorController - editaLocador");
+    }
+
 }
