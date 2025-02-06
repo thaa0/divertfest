@@ -95,10 +95,6 @@ public class Locador {
     }
 
     public void edita(LocadorEditaRequest locadorAtualizado) {
-        this.nome = locadorAtualizado.getNome();
-        this.razaoSocial = locadorAtualizado.getRazaoSocial();
-        this.telefone = locadorAtualizado.getTelefone();
         this.dadosBancarios = locadorAtualizado.getDadosBancarios();
-        this.endereco = locadorAtualizado.getEndereco();
     }
 }

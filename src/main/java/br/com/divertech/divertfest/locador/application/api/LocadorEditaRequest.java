@@ -9,10 +9,6 @@ import javax.validation.constraints.Email;
 
 @Getter
 public class LocadorEditaRequest {
-    private String nome;
-    private String razaoSocial;
-    private String telefone;
-    private String endereco;
     @Embedded
     private DadosBancarios dadosBancarios;
 }

@@ -30,7 +30,7 @@ public interface LocadorAPI {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void suspendeLocador(@PathVariable UUID idLocador);
 
-    @PatchMapping("/locador/edita")
+    @PatchMapping("/locador/dados-bancario")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void editaLocador(@RequestHeader(name = "Authorization", required = true) String token, @RequestBody @Valid LocadorEditaRequest locadorAtualizado);
 }

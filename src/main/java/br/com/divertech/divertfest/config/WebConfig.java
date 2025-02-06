@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
         public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/**") // Permite todas as rotas
                     .allowedOrigins("http://127.0.0.1:5500") // Permite todas as origens
-                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Permite todos os métodos
+                    .allowedMethods("PATCH","GET", "POST", "PUT", "DELETE", "OPTIONS") // Permite todos os métodos
                     .allowedHeaders("*", "Authorization") // Permite todos os cabeçalhos
                     .allowCredentials(true); // ativa credenciais
         }
