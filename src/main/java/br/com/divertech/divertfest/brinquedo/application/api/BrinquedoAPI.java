@@ -15,11 +15,11 @@ public interface BrinquedoAPI {
     @ResponseStatus(HttpStatus.CREATED)
     BrinquedoResponse cadastraBrinquedo(@RequestHeader(name = "Authorization", required = true) String token, @RequestBody BrinquedoRequest brinquedoRequest);
 
-    @GetMapping("locador/brinquedos/{idBrinquedo}")
+    @GetMapping("/brinquedos/{idBrinquedo}")
     @ResponseStatus(HttpStatus.OK)
     BrinquedoResponse buscaBrinquedoPorId(@PathVariable UUID idBrinquedo);
 
-    @PatchMapping("brinquedos/{idBrinquedo}")
+    @PatchMapping("locador/brinquedos/{idBrinquedo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void editaBrinquedo(@RequestHeader(name = "Authorization", required = true) String token,
 @PathVariable UUID idBrinquedo, @RequestBody BrinquedoEditaRequest brinquedoEditaRequest);
