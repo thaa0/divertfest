@@ -19,7 +19,7 @@ public interface BrinquedoAPI {
     @ResponseStatus(HttpStatus.OK)
     BrinquedoResponse buscaBrinquedoPorId(@PathVariable UUID idBrinquedo);
 
-    @PatchMapping("locador/brinquedos/{idBrinquedo}")
+    @PatchMapping("brinquedos/{idBrinquedo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void editaBrinquedo(@RequestHeader(name = "Authorization", required = true) String token,
 @PathVariable UUID idBrinquedo, @RequestBody BrinquedoEditaRequest brinquedoEditaRequest);
