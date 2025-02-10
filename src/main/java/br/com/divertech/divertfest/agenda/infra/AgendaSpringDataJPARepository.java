@@ -30,7 +30,9 @@ public interface AgendaSpringDataJPARepository extends JpaRepository<Agenda, UUI
 
     List<Agenda> findByLocatarioAndStatus(Locatario locatario, StatusAgenda status);
 
-    List<Agenda> findByLocadorAndStatus(Locador locador, StatusAgenda statusAgenda);
-
     List<Agenda> findByStatus(StatusAgenda statusAgenda);
+
+    List<Agenda> findByLocador(Locador locador);
+
+    List<Agenda> findByLocadorAndStatus(Locador locador, StatusAgenda statusAgenda);
 }

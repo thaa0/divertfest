@@ -12,5 +12,4 @@ public class BrinquedoEditaRequest {
     private String descricao;
     private Categoria categoria;
     private BigDecimal precoPorHora;
-    private String imagem;
 }

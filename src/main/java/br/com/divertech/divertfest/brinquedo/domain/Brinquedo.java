@@ -59,7 +59,6 @@ public class Brinquedo {
         this.descricao = brinquedoRequest.getDescricao();
         this.categoria = brinquedoRequest.getCategoria();
         this.precoPorHora = brinquedoRequest.getPrecoPorHora();
-        this.imagem = brinquedoRequest.getImagem();
     }
 
     public boolean estaAtivo() {
