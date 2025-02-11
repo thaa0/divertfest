@@ -49,6 +49,7 @@ public class Agenda {
     private StatusAgenda status;
     @ManyToOne
     private Locador locador;
+    private String imagem;
 
     public Agenda(AgendaRequest agendamento, Brinquedo brinquedo, Locatario locatario) {
         this.status = StatusAgenda.AGUARDANDO_PAGAMENTO;
@@ -60,6 +61,7 @@ public class Agenda {
         this.brinquedo = brinquedo;
         this.locatario = locatario;
         this.locador = brinquedo.getDonoBrinquedo();
+        this.imagem = brinquedo.getImagem();
     }
 
     private BigDecimal calculoPrecoPorHora(BigDecimal precoPorHora, LocalTime horaInicio,LocalTime horaFim) {
