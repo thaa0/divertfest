@@ -18,6 +18,7 @@ public class AgendamentoResponse {
     private String horaFim;
     private String status;
     private String imagem;
+    private String endereco;
 
     public AgendamentoResponse(Agenda agenda) {
         this.idAgendamento = agenda.getId();
@@ -30,6 +31,7 @@ public class AgendamentoResponse {
         this.horaFim = agenda.getHora_fim().toString();
         this.status = agenda.getStatus().name();
         this.imagem = agenda.getBrinquedo().getImagem();
+        this.endereco = agenda.getEndereco();
     }
 
     public static List<AgendamentoResponse> from(List<Agenda> agendamentos) {
