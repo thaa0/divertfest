@@ -10,6 +10,8 @@ import java.util.UUID;
 public class AgendamentoResponse {
     private UUID idAgendamento;
     private UUID idBrinquedo;
+    private UUID idLocatario;
+    private UUID idLocador;
     private String nomeBrinquedo;
     private String dataReserva;
     private String horaInicio;
@@ -19,6 +21,8 @@ public class AgendamentoResponse {
     public AgendamentoResponse(Agenda agenda) {
         this.idAgendamento = agenda.getId();
         this.idBrinquedo = agenda.getBrinquedo().getIdBrinquedo();
+        this.idLocador = agenda.getLocador().getIdUsuario();
+        this.idLocatario = agenda.getLocatario().getIdUsuario();
         this.nomeBrinquedo = agenda.getBrinquedo().getNome();
         this.dataReserva = agenda.getDataReserva().toString();
         this.horaInicio = agenda.getHora_inicio().toString();
