@@ -15,7 +15,7 @@ public interface BrinquedoAPI {
     @ResponseStatus(HttpStatus.CREATED)
     BrinquedoResponse cadastraBrinquedo(@RequestHeader(name = "Authorization", required = true) String token, @RequestBody BrinquedoRequest brinquedoRequest);
 
-    @GetMapping("locador/brinquedos/{idBrinquedo}")
+    @GetMapping("/brinquedos/{idBrinquedo}")
     @ResponseStatus(HttpStatus.OK)
     BrinquedoResponse buscaBrinquedoPorId(@PathVariable UUID idBrinquedo);
 
