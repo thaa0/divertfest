@@ -28,7 +28,7 @@ public interface BrinquedoAPI {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void apagaBrinquedo(@RequestHeader(name = "Authorization", required = true) String token, @PathVariable UUID idBrinquedo);
 
-    @GetMapping("brinquedos")
+    @GetMapping("public/brinquedos")
     @ResponseStatus(HttpStatus.OK)
     List<BrinquedoResponse> listaBrinquedos();
 
